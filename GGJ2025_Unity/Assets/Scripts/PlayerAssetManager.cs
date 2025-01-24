@@ -26,6 +26,8 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
     private void TaxStep()
     {
         Debug.Log(money = TaxPlayer());
+
+        // Preview tax for next TaxStep
         Debug.Log(TaxPlayer());
     }
 
