@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class MarketForceManager : Singleton<MarketForceManager>
 {
-    private int beachPriceLevel = 0;
-    private int suburbPriceLevel = 0;
-    private int cityPriceLevel = 0;
+    public int beachPriceLevel = 0;
+    public int suburbPriceLevel = 0;
+    public int cityPriceLevel = 0;
 
     private int priceLevelDie = 5;
 
