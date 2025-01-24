@@ -15,27 +15,31 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
     
     private void OnEnable()
     {
-        GlobalStepManager.OnStep += PlayerTax;
+        GlobalStepManager.OnStep += TaxStep;
     }
 
     private void OnDisable()
     {
-        GlobalStepManager.OnStep -= PlayerTax;
+        GlobalStepManager.OnStep -= TaxStep;
     }
 
-    private void PlayerTax()
+    private void TaxStep()
+    {
+        Debug.Log(money = TaxPlayer());
+        Debug.Log(TaxPlayer());
+    }
+
+    public float TaxPlayer()
     {
         if (money >= 0)
         {
             // Decrease positive money by 30%
-            money *= 1 - taxRate;
+            return money * (1 - taxRate);
         }
         else
         {
             // Increase debt (negative money) by 30%
-            money *= 1 + taxRate;
+            return money * (1 + taxRate);
         }
-
-        Debug.Log(money);
     }
 }
