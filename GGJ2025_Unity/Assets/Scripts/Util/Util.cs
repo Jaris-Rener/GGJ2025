@@ -29,10 +29,12 @@ public static class Util
         return list[Random.Range(0, list.Count)];
     }
 
-    public static BuildingListing GenerateRandomBuilding()
+    public static BuildingListing GenerateRandomBuilding(float lifetime)
     {
         var building = new BuildingListing();
         building.Cost = Random.Range(100, 1000);
+        building.Lifetime = lifetime;
+        building.CreatedTime = Time.time;
         var buildingTypes = Enum.GetNames(typeof(BuildingType));
         building.BuildingType = (BuildingType)Random.Range(0, buildingTypes.Length);
         

@@ -7,6 +7,8 @@ public class ListingUI : MonoBehaviour
 {
     protected BuildingListing Listing { get; private set; }
     protected Location Location { get; private set; }
+
+    [SerializeField] private Image _timerImage;
     
     [SerializeField] private LocationSpriteLookup _locationIcons;
     [SerializeField] private BuildingTypeSpriteLookup _buildingIcons;
@@ -26,5 +28,15 @@ public class ListingUI : MonoBehaviour
 
         _locationIcon.sprite = _locationIcons.Get(location);
         _buildingTypeIcon.sprite = _buildingIcons.Get(listing.BuildingType);
+    }
+
+    private void Update()
+    {
+        if (Listing == null)
+            return;
+        
+        var curTime = Time.time - Listing.CreatedTime;
+        var fill = 1 - (curTime / Listing.Lifetime);
+        _timerImage.fillAmount = fill;
     }
 }

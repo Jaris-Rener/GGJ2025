@@ -13,15 +13,25 @@ public class ListingsUI : MonoBehaviour
     
     private void Start()
     {
-        BuildingManager.Instance.Test(); // Temp generate some random listing
+        BuildingManager.Instance.OnListingCreated += AddListing;
+    }
 
-        _instances.ClearObjects();
-        foreach ((BuildingListing listing, Location location) in BuildingManager.Instance.GetAllListings())
+    private void OnDestroy()
+    {
+        BuildingManager.Instance.OnListingCreated -= AddListing;
+    }
+
+    private void AddListing(BuildingListing listing, Location location)
+    {
+        var instance = Instantiate(_notificationUIPrefab, _notificationsRoot);
+        instance.Setup(listing, location);
+        instance.OnSelected += OnListingSelected;
+        _instances.Add(instance);
+        listing.OnExpired += () =>
         {
-            var instance = Instantiate(_notificationUIPrefab, _notificationsRoot);
-            instance.Setup(listing, location);
-            instance.OnSelected += OnListingSelected;
-        }
+            _instances.Remove(instance);
+            Destroy(instance.gameObject);
+        };
     }
 
     private void OnListingSelected(BuildingListing listing, Location location)
