@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2585093083147518809
+--- !u!1 &140189491052947344
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2603306624258758930}
-  - component: {fileID: 3242876274835343082}
+  - component: {fileID: 3789644486315237353}
+  - component: {fileID: 7374954792086399411}
   m_Layer: 0
-  m_Name: House
+  m_Name: BuildingVisualiser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2603306624258758930
+--- !u!4 &3789644486315237353
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2585093083147518809}
+  m_GameObject: {fileID: 140189491052947344}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,15 +32,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3242876274835343082
+--- !u!114 &7374954792086399411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2585093083147518809}
+  m_GameObject: {fileID: 140189491052947344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 602143254ca3e5443bf016ac5a2f890a, type: 3}
+  m_Script: {fileID: 11500000, guid: b22d8e74a1914e8d9742c6e0da079549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _house: {fileID: 2268821238032366174, guid: 1c124a2cf5e22574ca13f86f8bcda90b, type: 3}
+  _apartment: {fileID: 2268821238032366174, guid: adf3d54bae5bce842ba8f3f4b9c20750, type: 3}
+  _mansion: {fileID: 2268821238032366174, guid: 43b66507de1b0e140a47bea7d0a1aab1, type: 3}
