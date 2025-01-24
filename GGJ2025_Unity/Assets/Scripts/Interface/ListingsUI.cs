@@ -13,8 +13,6 @@ public class ListingsUI : MonoBehaviour
     
     private void Start()
     {
-        BuildingManager.Instance.Test(); // Temp generate some random listing
-
         _instances.ClearObjects();
         foreach ((BuildingListing listing, Location location) in BuildingManager.Instance.GetAllListings())
         {

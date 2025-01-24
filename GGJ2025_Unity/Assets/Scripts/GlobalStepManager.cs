@@ -10,18 +10,7 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
     // Interval in seconds between each step
     [SerializeField]
     private float stepInterval = 1.0f;
-
-    private void Awake()
-    {
-        // Ensure only one instance of GlobalStepManager exists
-        if (FindObjectsOfType<GlobalStepManager>().Length > 1)
-        {
-            Debug.LogError("Multiple instances of GlobalStepManager detected. Destroying duplicate.");
-            Destroy(gameObject);
-            return;
-        }
-    }
-
+    
     private void Start()
     {
         // Start the coroutine to trigger steps
