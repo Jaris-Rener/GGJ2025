@@ -2,6 +2,7 @@ using System;
 
 public class BuildingListing
 {
+    public Location Location;
     public string Name;
     public BuildingType BuildingType;
     public int Cost;
@@ -10,7 +11,7 @@ public class BuildingListing
 
     public override string ToString()
     {
-        return $"{BuildingType} @ ${Cost}K";
+        return $"{BuildingType} @ {Location} @ ${Cost}K";
     }
 
     public Action OnExpired;

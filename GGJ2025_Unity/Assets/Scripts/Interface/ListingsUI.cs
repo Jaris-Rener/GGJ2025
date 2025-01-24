@@ -19,12 +19,12 @@ public class ListingsUI : MonoBehaviour
     private void OnDestroy()
     {
         BuildingManager.Instance.OnListingCreated -= AddListing;
-    }
+    } 
 
-    private void AddListing(BuildingListing listing, Location location)
+    private void AddListing(BuildingListing listing)
     {
         var instance = Instantiate(_notificationUIPrefab, _notificationsRoot);
-        instance.Setup(listing, location);
+        instance.Setup(listing);
         instance.OnSelected += OnListingSelected;
         _instances.Add(instance);
         listing.OnExpired += () =>
@@ -34,8 +34,8 @@ public class ListingsUI : MonoBehaviour
         };
     }
 
-    private void OnListingSelected(BuildingListing listing, Location location)
+    private void OnListingSelected(BuildingListing listing)
     {
-        _listingPopup.Setup(listing, location);
+        _listingPopup.Setup(listing);
     }
 }

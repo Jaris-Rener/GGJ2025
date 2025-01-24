@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class ListingUI : MonoBehaviour
 {
     protected BuildingListing Listing { get; private set; }
-    protected Location Location { get; private set; }
 
     [SerializeField] private Image _timerImage;
     
@@ -18,15 +17,14 @@ public class ListingUI : MonoBehaviour
     [SerializeField] private Image _locationIcon;
     [SerializeField] private Image _buildingTypeIcon;
 
-    public void Setup(BuildingListing listing, Location location)
+    public void Setup(BuildingListing listing)
     {
         Listing = listing;
-        Location = location;
         
         _name.text = listing.Name;
         _cost.text = $"${listing.Cost}K";
 
-        _locationIcon.sprite = _locationIcons.Get(location);
+        _locationIcon.sprite = _locationIcons.Get(listing.Location);
         _buildingTypeIcon.sprite = _buildingIcons.Get(listing.BuildingType);
     }
 

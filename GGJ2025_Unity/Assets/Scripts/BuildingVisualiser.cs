@@ -30,11 +30,11 @@ public class BuildingVisualiser : Singleton<BuildingVisualiser>
     {
         _instances.ClearObjects();
         
-        foreach (var (listing, location) in BuildingManager.Instance.GetAllListings())
+        foreach (var listing in BuildingManager.Instance.AllListings)
         {
             var prefab = GetPrefab(listing.BuildingType);
 
-            var locationsList = GetLocationList(location);
+            var locationsList = GetLocationList(listing.Location);
             var spawnLocation = locationsList
                 .Where(x => x.CurrentBuilding == null)
                 .Where(x => x.AllowedTypes.Contains(listing.BuildingType))

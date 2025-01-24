@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public class BuildingManager : Singleton<BuildingManager>
 {
-    public event Action<BuildingListing, Location> OnListingCreated;
+    public event Action<BuildingListing> OnListingCreated;
 
     [SerializeField] private int _initialListingCount = 3;
     [SerializeField] private float _minListingDelay = 3;
@@ -16,8 +16,8 @@ public class BuildingManager : Singleton<BuildingManager>
     [SerializeField] private int _maxNewListings = 2;
     [SerializeField] private float _minListingTime = 6;
     [SerializeField] private float _maxListingTime = 12;
-    
-    private readonly Dictionary<Location, List<BuildingListing>> _listings = new();
+    public IEnumerable<BuildingListing> AllListings => _listings;
+    private readonly List<BuildingListing> _listings = new();
 
     private void Start()
     {
@@ -27,17 +27,14 @@ public class BuildingManager : Singleton<BuildingManager>
 
     private void Update()
     {
-        foreach (var (location, list) in _listings)
+        for (var i = _listings.Count - 1; i >= 0; i--)
         {
-            for (var i = list.Count - 1; i >= 0; i--)
+            var listing = _listings[i];
+            var curTime = Time.time - listing.CreatedTime;
+            if (curTime > listing.Lifetime)
             {
-                var listing = list[i];
-                var curTime = Time.time - listing.CreatedTime;
-                if (curTime > listing.Lifetime)
-                {
-                    RemoveListing(location, listing);
-                    listing.OnExpired?.Invoke();
-                }
+                RemoveListing(listing);
+                listing.OnExpired?.Invoke();
             }
         }
     }
@@ -66,43 +63,21 @@ public class BuildingManager : Singleton<BuildingManager>
             AddListing(Util.GenerateRandomBuilding(lifetime), Util.GetRandomLocation());
         }
     }
-
-    public IEnumerable<(BuildingListing, Location)> GetAllListings()
-    {
-        foreach (var entry in _listings)
-        foreach (var listing in entry.Value)
-            yield return (listing, entry.Key);
-    }
-
+    
     public IEnumerable<BuildingListing> GetListings(Location location)
-    {
-        return _listings.TryGetValue(location, out var listings)
-            ? listings
-            : Enumerable.Empty<BuildingListing>();
-    }
+        => _listings.Where(x => x.Location == location);
 
     public void AddListing(BuildingListing listing, Location location)
     {
-        if (_listings.TryGetValue(location, out var listings))
-        {
-            listings ??= new();
-            listings.Add(listing);
-        }
-        else
-        {
-            listings = new List<BuildingListing> { listing };
-            _listings.Add(location, listings);
-        }
-        
-        OnListingCreated?.Invoke(listing, location);
-        Debug.Log($"New listing {listing} @ {location}");
+        listing.Location = location;
+        _listings.Add(listing);
+        OnListingCreated?.Invoke(listing);
+        Debug.Log($"New listing {listing}");
     }
-    
-    private void RemoveListing(Location location, BuildingListing listing)
+
+    private void RemoveListing(BuildingListing listing)
     {
-        if (_listings.TryGetValue(location, out var listings))
-            listings?.Remove(listing);
-        
-        Debug.Log($"Listing expired {listing} @ {location}");
+        _listings?.Remove(listing);
+        Debug.Log($"Listing expired {listing}");
     }
 }

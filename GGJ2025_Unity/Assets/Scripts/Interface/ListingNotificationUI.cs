@@ -4,10 +4,10 @@ using UnityEngine.EventSystems;
 
 public class ListingNotificationUI : ListingUI, IPointerClickHandler
 {
-    public event Action<BuildingListing, Location> OnSelected;
+    public event Action<BuildingListing> OnSelected;
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        OnSelected?.Invoke(Listing, Location);
+        OnSelected?.Invoke(Listing);
     }
 }
