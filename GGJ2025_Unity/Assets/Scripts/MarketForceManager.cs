@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class MarketForceManager : Singleton<MarketForceManager>
 {
-    private int beachPriceLevel = 0;
-    private int suburbPriceLevel = 0;
-    private int cityPriceLevel = 0;
+    public int beachPriceLevel = 0;
+    public int suburbPriceLevel = 0;
+    public int cityPriceLevel = 0;
 
     private int priceLevelDie = 5;
 
@@ -37,7 +37,11 @@ public class MarketForceManager : Singleton<MarketForceManager>
 
     private int RollDie()
     {
-        // Roll a 5-sided die (-2, -1, 0, 1, 2)
-        return UnityEngine.Random.Range(-2, 3); // Random.Range is inclusive of the lower bound and exclusive of the upper bound
+        // Calculate the range dynamically based on priceLevelDie
+        int min = -priceLevelDie / 2;
+        int max = priceLevelDie / 2 + 1;
+
+        // Roll the die within the range
+        return UnityEngine.Random.Range(min, max);
     }
 }
