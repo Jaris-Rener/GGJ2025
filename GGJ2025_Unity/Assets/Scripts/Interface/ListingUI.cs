@@ -32,6 +32,12 @@ public class ListingUI : MonoBehaviour
     {
         if (Listing == null)
             return;
+
+        if (Listing.Lifetime < 0)
+        {
+            _timerImage.fillAmount = 0;
+            return;
+        }
         
         var curTime = Time.time - Listing.CreatedTime;
         var fill = 1 - (curTime / Listing.Lifetime);

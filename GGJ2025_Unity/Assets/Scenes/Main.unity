@@ -1494,6 +1494,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1749221064474123640, guid: b3125788766c80249a4bba0eca9bf40a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1749221064474123640, guid: b3125788766c80249a4bba0eca9bf40a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1749221064474123640, guid: b3125788766c80249a4bba0eca9bf40a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1749221064474123640, guid: b3125788766c80249a4bba0eca9bf40a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1749221064474123640, guid: b3125788766c80249a4bba0eca9bf40a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1749221064474123640, guid: b3125788766c80249a4bba0eca9bf40a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1764827505761188029, guid: b3125788766c80249a4bba0eca9bf40a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1804,6 +1828,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4909562545217782078, guid: b3125788766c80249a4bba0eca9bf40a, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133039112611081992, guid: b3125788766c80249a4bba0eca9bf40a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133039112611081992, guid: b3125788766c80249a4bba0eca9bf40a, type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5414924785352202177, guid: b3125788766c80249a4bba0eca9bf40a, type: 3}
@@ -3595,7 +3627,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6777874851287740111, guid: 16ec9d5f5583aad4b83e6d3ecc934d39, type: 3}
       propertyPath: money
-      value: -1000
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 2238485520321346945, guid: 16ec9d5f5583aad4b83e6d3ecc934d39, type: 3}
       propertyPath: m_Name
@@ -3642,6 +3674,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1288382981834044251, guid: 1517c2a7d58ee854a9683c5de7cbc3be, type: 3}
+      propertyPath: stepInterval
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2238485520321346945, guid: 1517c2a7d58ee854a9683c5de7cbc3be, type: 3}
       propertyPath: m_Name
       value: GlobalStepManager

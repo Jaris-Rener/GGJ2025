@@ -14,5 +14,5 @@ public class BuildingListing
         return $"{BuildingType} @ {Location} @ ${Cost}K";
     }
 
-    public Action OnExpired;
+    public Action OnRemoved;
 }

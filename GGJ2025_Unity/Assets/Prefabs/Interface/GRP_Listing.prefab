@@ -62,6 +62,7 @@ MonoBehaviour:
   _cost: {fileID: 1942177833093962417}
   _locationIcon: {fileID: 1477866843537217708}
   _buildingTypeIcon: {fileID: 1781949505594948335}
+  _buyButton: {fileID: 7194705087346489898}
 --- !u!1 &1033973715932916275
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,7 +34,6 @@ public class BuildingManager : Singleton<BuildingManager>
             if (curTime > listing.Lifetime)
             {
                 RemoveListing(listing);
-                listing.OnExpired?.Invoke();
             }
         }
     }
@@ -75,9 +74,10 @@ public class BuildingManager : Singleton<BuildingManager>
         Debug.Log($"New listing {listing}");
     }
 
-    private void RemoveListing(BuildingListing listing)
+    public void RemoveListing(BuildingListing listing)
     {
         _listings?.Remove(listing);
+        listing.OnRemoved?.Invoke();
         Debug.Log($"Listing expired {listing}");
     }
 }

@@ -18,6 +18,8 @@ public class FullListingUI : ListingUI
 
     private void BuyListing()
     {
-        PlayerAssetManager.Instance.AddBuilding(Listing);
+        var success = PlayerAssetManager.Instance.Buy(Listing);
+        if (success)
+            BuildingManager.Instance.RemoveListing(Listing);
     }
 }
