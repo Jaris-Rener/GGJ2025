@@ -24,6 +24,11 @@ public static class Util
         return (Location)locations.GetValue(Random.Range(0, locations.Length));
     }
 
+    public static T GetRandom<T>(this List<T> list)
+    {
+        return list[Random.Range(0, list.Count)];
+    }
+
     public static BuildingListing GenerateRandomBuilding()
     {
         var building = new BuildingListing();
