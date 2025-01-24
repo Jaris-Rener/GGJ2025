@@ -37,7 +37,11 @@ public class MarketForceManager : Singleton<MarketForceManager>
 
     private int RollDie()
     {
-        // Roll a 5-sided die (-2, -1, 0, 1, 2)
-        return UnityEngine.Random.Range(-2, 3); // Random.Range is inclusive of the lower bound and exclusive of the upper bound
+        // Calculate the range dynamically based on priceLevelDie
+        int min = -priceLevelDie / 2;
+        int max = priceLevelDie / 2 + 1;
+
+        // Roll the die within the range
+        return UnityEngine.Random.Range(min, max);
     }
 }
