@@ -5,4 +5,5 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
 {
     public int money;
 
+
 }
