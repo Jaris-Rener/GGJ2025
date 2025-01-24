@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 
 public class BuildingManager : Singleton<BuildingManager>
 {
+    public event Action<BuildingListing, Location> OnListingCreated;
+
     [SerializeField] private int _initialListingCount = 3;
     [SerializeField] private float _minListingDelay = 3;
     [SerializeField] private float _maxListingDelay = 10;
@@ -32,7 +34,10 @@ public class BuildingManager : Singleton<BuildingManager>
                 var listing = list[i];
                 var curTime = Time.time - listing.CreatedTime;
                 if (curTime > listing.Lifetime)
+                {
                     RemoveListing(location, listing);
+                    listing.OnExpired?.Invoke();
+                }
             }
         }
     }
@@ -88,11 +93,16 @@ public class BuildingManager : Singleton<BuildingManager>
             listings = new List<BuildingListing> { listing };
             _listings.Add(location, listings);
         }
+        
+        OnListingCreated?.Invoke(listing, location);
+        Debug.Log($"New listing {listing} @ {location}");
     }
     
     private void RemoveListing(Location location, BuildingListing listing)
     {
         if (_listings.TryGetValue(location, out var listings))
             listings?.Remove(listing);
+        
+        Debug.Log($"Listing expired {listing} @ {location}");
     }
 }

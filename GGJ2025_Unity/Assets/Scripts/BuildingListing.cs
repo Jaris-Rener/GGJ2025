@@ -1,3 +1,5 @@
+using System;
+
 public class BuildingListing
 {
     public string Name;
@@ -10,4 +12,6 @@ public class BuildingListing
     {
         return $"{BuildingType} @ ${Cost}K";
     }
+
+    public Action OnExpired;
 }
