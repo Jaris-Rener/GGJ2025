@@ -1,9 +1,13 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ListingUI : MonoBehaviour
 {
+    protected BuildingListing Listing { get; private set; }
+    protected Location Location { get; private set; }
+    
     [SerializeField] private LocationSpriteLookup _locationIcons;
     [SerializeField] private BuildingTypeSpriteLookup _buildingIcons;
     
@@ -11,9 +15,12 @@ public class ListingUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _cost;
     [SerializeField] private Image _locationIcon;
     [SerializeField] private Image _buildingTypeIcon;
-    
+
     public void Setup(BuildingListing listing, Location location)
     {
+        Listing = listing;
+        Location = location;
+        
         _name.text = listing.Name;
         _cost.text = $"${listing.Cost}K";
 

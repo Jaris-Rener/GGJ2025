@@ -10,7 +10,7 @@ public class BuildingManager : Singleton<BuildingManager>
     private readonly Dictionary<Location, List<BuildingListing>> _listings = new();
 
     [ContextMenu("Test")]
-    private void Test()
+    public void Test()
     {
         for (int i = 0; i < 10; i++)
         {
@@ -20,9 +20,13 @@ public class BuildingManager : Singleton<BuildingManager>
             Debug.Log($"{location} - {listing}");
         }
     }
-    
-    public IEnumerable<BuildingListing> GetAllListings()
-        => _listings.Values.SelectMany(entry => entry);
+
+    public IEnumerable<(BuildingListing, Location)> GetAllListings()
+    {
+        foreach (var entry in _listings)
+        foreach (var listing in entry.Value)
+            yield return (listing, entry.Key);
+    }
 
     public IEnumerable<BuildingListing> GetListings(Location location)
     {

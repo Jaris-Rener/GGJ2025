@@ -16,7 +16,7 @@ public class BuildingVisualiser : Singleton<BuildingVisualiser>
     {
         _instances.ClearObjects();
         
-        foreach (var listing in BuildingManager.Instance.GetAllListings())
+        foreach (var (listing, location) in BuildingManager.Instance.GetAllListings())
         {
             var prefab = GetPrefab(listing.BuildingType);
             
