@@ -14,19 +14,13 @@ public class BuildingManager : Singleton<BuildingManager>
     {
         for (int i = 0; i < 10; i++)
         {
-            var listing = GenerateRandomBuilding();
-            var location = GetRandomLocation();
+            var listing = Util.GenerateRandomBuilding();
+            var location = Util.GetRandomLocation();
             AddListing(listing, location);
             Debug.Log($"{location} - {listing}");
         }
     }
-
-    private Location GetRandomLocation()
-    {
-        var locations = Enum.GetValues(typeof(Location));
-        return (Location)locations.GetValue(Random.Range(0, locations.Length));
-    }
-
+    
     public IEnumerable<BuildingListing> GetAllListings()
         => _listings.Values.SelectMany(entry => entry);
 
@@ -49,14 +43,5 @@ public class BuildingManager : Singleton<BuildingManager>
             listings = new List<BuildingListing> { listing };
             _listings.Add(location, listings);
         }
-    }
-    
-    private BuildingListing GenerateRandomBuilding()
-    {
-        var house = new BuildingListing();
-        house.Cost = Random.Range(100, 1000);
-        var buildingTypes = Enum.GetNames(typeof(BuildingType));
-        house.BuildingType = (BuildingType)Random.Range(0, buildingTypes.Length);
-        return house;
     }
 }

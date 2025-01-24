@@ -346,6 +346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4788290131982767178}
   - component: {fileID: 4229776934793364008}
+  - component: {fileID: 6851754843861130411}
   m_Layer: 5
   m_Name: GRP_CompactListing
   m_TagString: Untagged
@@ -402,6 +403,25 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &6851754843861130411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7946802193266929237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71ee1b15cfe00f44bceefe6139cb23d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _locationIcons: {fileID: 11400000, guid: 1d29fd60612ac4247b80a200af12786f, type: 2}
+  _buildingIcons: {fileID: 11400000, guid: 35dd281f18428d642b2f4e2d216d0949, type: 2}
+  _name: {fileID: 1704477479668692368}
+  _cost: {fileID: 4100190579526256213}
+  _locationIcon: {fileID: 7098266537895038938}
+  _buildingTypeIcon: {fileID: 6801141921434804021}
+  _listingUI: {fileID: 0}
 --- !u!1 &8444537521148527991
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6745098, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -653,7 +673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6745098, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

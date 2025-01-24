@@ -1,5 +1,6 @@
 public class BuildingListing
 {
+    public string Name;
     public BuildingType BuildingType;
     public int Cost;
 
