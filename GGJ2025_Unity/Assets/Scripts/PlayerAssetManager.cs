@@ -18,11 +18,16 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
 
     private void PlayerTax()
     {
-        // Calculate the reduction factor (e.g., 30% = 0.3, so we use 0.7 to keep 70%)
-        float reductionFactor = 1 - taxRate;
-
-        // Adjust the absolute value and preserve the original sign
-        money = Mathf.Abs(money) * reductionFactor;
+        if (money >= 0)
+        {
+            // Decrease positive money by 30%
+            money *= 1 - taxRate;
+        }
+        else
+        {
+            // Increase debt (negative money) by 30%
+            money *= 1 + taxRate;
+        }
 
         Debug.Log(money);
     }
