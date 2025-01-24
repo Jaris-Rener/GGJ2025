@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class BuildingManager : MonoBehaviour
+public class BuildingManager : Singleton<BuildingManager>
 {
     private readonly List<BuildingListing> _listings = new();
     
