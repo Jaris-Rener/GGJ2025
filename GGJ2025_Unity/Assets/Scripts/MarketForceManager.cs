@@ -40,8 +40,8 @@ public class MarketForceManager : Singleton<MarketForceManager>
     [Serializable]
     public struct NumberDrawnSettings
     {
-        public List<int> NumbersToAdd;
-        public List<int> NumbersToRemove;
+        public int[] NumbersToAdd;
+        public int[] NumbersToRemove;
     }
 
     private void OnEnable()
@@ -79,9 +79,17 @@ public class MarketForceManager : Singleton<MarketForceManager>
         savedSuburbCard = suburbDeck.DrawCard();
         savedCityCard = cityDeck.DrawCard();
 
-        OnCardDrawn(savedBeachCard, beachDeck); // Trigger the callback
-        OnCardDrawn(savedSuburbCard, suburbDeck); // Trigger the callback
-        OnCardDrawn(savedCityCard, cityDeck); // Trigger the callback
+        OnCardDrawn(savedBeachCard, beachDeck);
+        OnCardDrawn(savedSuburbCard, suburbDeck);
+        OnCardDrawn(savedCityCard, cityDeck);
+
+        string deckLog = "";
+        for (int i = 0; i < beachDeck.currentDeck.Count; i++)
+        {
+            deckLog += beachDeck.currentDeck[i] + " ";
+        }
+
+        Debug.Log(deckLog);
 
         OnMarketUpdated?.Invoke();
         
@@ -123,8 +131,62 @@ public class MarketForceManager : Singleton<MarketForceManager>
 
     private void OnCardDrawn(int cardValue, DeckManager deck)
     {
-        // Callback function for when a card is drawn (extendable for custom behavior)
-        Debug.Log($"Card Drawn: {cardValue}");
+        if (cardValue == -2) 
+        {
+            for (int i = 0; i < NumberSettings.MinusTwo.NumbersToAdd.Length; i++)
+            {
+                deck.AddCard(NumberSettings.MinusTwo.NumbersToAdd[i]);
+            }
+            for (int i = 0; i < NumberSettings.MinusTwo.NumbersToRemove.Length; i++)
+            {
+                deck.RemoveCard(NumberSettings.MinusTwo.NumbersToRemove[i]);
+            }
+        }
+        if (cardValue == -1)
+        {
+            for (int i = 0; i < NumberSettings.MinusOne.NumbersToAdd.Length; i++)
+            {
+                deck.AddCard(NumberSettings.MinusOne.NumbersToAdd[i]);
+            }
+            for (int i = 0; i < NumberSettings.MinusOne.NumbersToRemove.Length; i++)
+            {
+                deck.RemoveCard(NumberSettings.MinusOne.NumbersToRemove[i]);
+
+            }
+        }
+        if (cardValue == 0)
+        {
+            for (int i = 0; i < NumberSettings.Zero.NumbersToAdd.Length; i++)
+            {
+                deck.AddCard(NumberSettings.Zero.NumbersToAdd[i]);
+            }
+            for (int i = 0; i < NumberSettings.Zero.NumbersToRemove.Length; i++)
+            {
+                deck.RemoveCard(NumberSettings.Zero.NumbersToRemove[i]);
+            }
+        }
+        if (cardValue == 1)
+        {
+            for (int i = 0; i < NumberSettings.PlusOne.NumbersToAdd.Length; i++)
+            {
+                deck.AddCard(NumberSettings.PlusOne.NumbersToAdd[i]);
+            }
+            for (int i = 0; i < NumberSettings.PlusOne.NumbersToRemove.Length; i++)
+            {
+                deck.RemoveCard(NumberSettings.PlusOne.NumbersToRemove[i]);
+            }
+        }
+        if (cardValue == 2)
+        {
+            for (int i = 0; i < NumberSettings.PlusTwo.NumbersToAdd.Length; i++)
+            {
+                deck.AddCard(NumberSettings.PlusTwo.NumbersToAdd[i]);
+            }
+            for (int i = 0; i < NumberSettings.PlusTwo.NumbersToRemove.Length; i++)
+            {
+                deck.RemoveCard(NumberSettings.PlusTwo.NumbersToRemove[i]);
+            }
+        }
     }
 
     // Expose deck functions
@@ -159,7 +221,7 @@ public class MarketForceManager : Singleton<MarketForceManager>
     private class DeckManager
     {
         private readonly List<int> defaultDeck;
-        private List<int> currentDeck;
+        public List<int> currentDeck;
         private readonly bool removeDrawnCards;
 
         public DeckManager(List<int> defaultDeck, bool removeDrawnCards)
