@@ -6,10 +6,18 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
 {
     // The event that other classes can subscribe to
     public static event Action OnStep;
+    public static event Action OnEndStep;
 
     // Interval in seconds between each step
     [SerializeField]
-    private float stepInterval = 1.0f;
+    private float stepInterval = 10.0f;
+
+    [SerializeField]
+    private int stepCount = 15;
+
+    private float currentStepCount = 0;
+
+    bool endTriggered = false;
     
     public float LastStepTime { get; private set; }
     public float NextStepTime { get; private set; }
@@ -22,19 +30,33 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
 
     private IEnumerator StepCoroutine()
     {
-        while (true)
+        while (endTriggered == false)
         {
             LastStepTime = Time.time;
             NextStepTime = Time.time + stepInterval;
             yield return new WaitForSeconds(stepInterval);
-            TriggerStep();
+            if (currentStepCount == stepCount)
+            {
+                TriggerEndStep();
+                endTriggered = true;
+                Debug.Log("THE END");
+            }
+            else
+            {
+                currentStepCount++;
+                TriggerStep();
+            }
         }
     }
 
     private void TriggerStep()
     {
-        // Invoke the event
         OnStep?.Invoke();
+    }
+
+    private void TriggerEndStep()
+    {
+        OnEndStep?.Invoke();
     }
 
     public void SetStepInterval(float interval)
