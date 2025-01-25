@@ -8,7 +8,7 @@ public class MarketTimerUI : MonoBehaviour
     
     private void Update()
     {
-        _fill.fillAmount = Mathf.InverseLerp(
+        _fill.fillAmount = 1 - Mathf.InverseLerp(
             GlobalStepManager.Instance.LastStepTime,
             GlobalStepManager.Instance.NextStepTime,
             Time.time);
