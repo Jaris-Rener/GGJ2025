@@ -80,7 +80,7 @@ public class BuildingManager : Singleton<BuildingManager>
 
     private IEnumerator GenerateListings()
     {
-        while (true)
+        while (!GlobalStepManager.endTriggered)
         {
             var delay = Random.Range(_minListingDelay, _maxListingDelay);
             delay *= _speedMultiplier.Evaluate(Time.time - GlobalStepManager.Instance.StartTime);
@@ -118,6 +118,8 @@ public class BuildingManager : Singleton<BuildingManager>
         if (returnToPool)
             Return(listing);
 
+        // Stop generating listings when end is triggered
+        if (GlobalStepManager.endTriggered) return;
         if (_listings.Count < _minListings)
         {
             for (int i = 0; i < _minListings - _listings.Count; i++)

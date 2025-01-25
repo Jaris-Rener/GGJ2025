@@ -1,3 +1,4 @@
+using EasyRoads3Dv3;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +14,13 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
     [SerializeField] private List<AudioClip> _WinGameClips;
     [SerializeField] private List<AudioClip> _LoseGameClips;
 
+    // Prefab to spawn when the game ends
+    [SerializeField]
+    private GraphHandler GraphHandlerPrefab;
+
+    [SerializeField]
+    private Vector3 spawnPosition = Vector3.zero;
+
     // Interval in seconds between each step
     [SerializeField]
     private float stepInterval = 10.0f;
@@ -22,7 +30,7 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
 
     private int currentStepCount = 0;
 
-    bool endTriggered = false;
+    static public bool endTriggered = false;
     
     public float LastStepTime { get; private set; }
     public float NextStepTime { get; private set; }
@@ -76,6 +84,31 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
             var loseclip = _LoseGameClips.GetRandom();
             _audioSource.PlayOneShot(loseclip);
         }
+        /*
+        // Create the graph
+        if (GraphHandlerPrefab != null)
+        {
+            float moneyMin = 9999999999.0f;
+            float moneyMax = -9999999999.0f;
+            for (int i = 0; i < PlayerAssetManager.moneyChanged.Count; i++)
+            {
+                Debug.Log("CreatePoint");
+                GraphHandlerPrefab.CreatePoint(new Vector2(i, PlayerAssetManager.moneyChanged[i]));
+                if (PlayerAssetManager.moneyChanged[i] > moneyMax)
+                    moneyMax = PlayerAssetManager.moneyChanged[i];
+
+                if (PlayerAssetManager.moneyChanged[i] < moneyMin)
+                    moneyMin = PlayerAssetManager.moneyChanged[i];
+            }
+            GraphHandlerPrefab.SetCornerValues(new Vector2(0f, 0f), new Vector2(PlayerAssetManager.moneyChanged.Count, PlayerAssetManager.Instance.money));
+            GraphHandlerPrefab.UpdateGraph();
+            Debug.Log("End prefab spawned.");
+        }
+        else
+        {
+            Debug.LogWarning("End prefab is not assigned.");
+        }
+        */
     }
 
     public void SetStepInterval(float interval)
