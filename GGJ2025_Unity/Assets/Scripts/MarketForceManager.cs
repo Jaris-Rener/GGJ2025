@@ -25,7 +25,9 @@ public class MarketForceManager : Singleton<MarketForceManager>
     public int savedSuburbCard;
     public int savedCityCard;
 
-    public DeckDrawSettings NumberSettings = new DeckDrawSettings();
+    public DeckDrawSettings beachNumberSettings = new DeckDrawSettings();
+    public DeckDrawSettings suburbNumberSettings = new DeckDrawSettings();
+    public DeckDrawSettings cityNumberSettings = new DeckDrawSettings();
 
     [Serializable]
     public struct DeckDrawSettings
@@ -83,13 +85,25 @@ public class MarketForceManager : Singleton<MarketForceManager>
         OnCardDrawn(savedSuburbCard, suburbDeck);
         OnCardDrawn(savedCityCard, cityDeck);
 
-        string deckLog = "";
+        string beachDeckLog = "";
         for (int i = 0; i < beachDeck.currentDeck.Count; i++)
         {
-            deckLog += beachDeck.currentDeck[i] + " ";
+            beachDeckLog += beachDeck.currentDeck[i] + " ";
+        }
+        string suburbDeckLog = "";
+        for (int i = 0; i < beachDeck.currentDeck.Count; i++)
+        {
+            suburbDeckLog += beachDeck.currentDeck[i] + " ";
+        }
+        string cityDeckLog = "";
+        for (int i = 0; i < beachDeck.currentDeck.Count; i++)
+        {
+            cityDeckLog += beachDeck.currentDeck[i] + " ";
         }
 
-        Debug.Log(deckLog);
+        Debug.Log("Beach Deck: " + beachDeckLog);
+        Debug.Log("Suburb Deck: " + suburbDeckLog);
+        Debug.Log("City Deck: " + cityDeckLog);
 
         OnMarketUpdated?.Invoke();
         
@@ -131,6 +145,20 @@ public class MarketForceManager : Singleton<MarketForceManager>
 
     private void OnCardDrawn(int cardValue, DeckManager deck)
     {
+        DeckDrawSettings NumberSettings = new DeckDrawSettings();
+        if (deck == beachDeck)
+        {
+            NumberSettings = beachNumberSettings;
+        }
+        else if (deck == cityDeck) 
+        {
+            NumberSettings = cityNumberSettings;
+        }
+        else if (deck == suburbDeck) 
+        {
+            NumberSettings = suburbNumberSettings;
+        }
+
         if (cardValue == -2) 
         {
             for (int i = 0; i < NumberSettings.MinusTwo.NumbersToAdd.Length; i++)
