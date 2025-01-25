@@ -50,9 +50,17 @@ MonoBehaviour:
   maxPriceLevel: 2
   minPriceLevel: -2
   removeDrawnCardsFromDecks: 0
+  randomizedStartingPrices: 0100000000000000ffffffff
+  randomizedInitialMarket: 0000000001000000ffffffff
   savedBeachCard: 0
   savedSuburbCard: 0
   savedCityCard: 0
+  intToFloatMap:
+  - 0.5
+  - 0.75
+  - 1
+  - 1.5
+  - 2
   beachNumberSettings:
     PlusTwo:
       NumbersToAdd: 01000000fffffffffeffffff
@@ -69,6 +77,12 @@ MonoBehaviour:
     MinusTwo:
       NumbersToAdd: ffffffff0100000002000000
       NumbersToRemove: 
+    MaxOut:
+      NumbersToAdd: fffffffffeffffff
+      NumbersToRemove: 0200000001000000
+    BottomOut:
+      NumbersToAdd: 0200000001000000
+      NumbersToRemove: feffffffffffffff
   suburbNumberSettings:
     PlusTwo:
       NumbersToAdd: 01000000fffffffffeffffff
@@ -85,6 +99,12 @@ MonoBehaviour:
     MinusTwo:
       NumbersToAdd: ffffffff0100000002000000
       NumbersToRemove: 
+    MaxOut:
+      NumbersToAdd: fffffffffeffffff
+      NumbersToRemove: 0100000002000000
+    BottomOut:
+      NumbersToAdd: 0200000001000000
+      NumbersToRemove: feffffffffffffff
   cityNumberSettings:
     PlusTwo:
       NumbersToAdd: 01000000fffffffffeffffff
@@ -101,3 +121,9 @@ MonoBehaviour:
     MinusTwo:
       NumbersToAdd: ffffffff0100000002000000
       NumbersToRemove: 
+    MaxOut:
+      NumbersToAdd: fffffffffeffffff
+      NumbersToRemove: 0100000002000000
+    BottomOut:
+      NumbersToAdd: 0200000001000000
+      NumbersToRemove: feffffffffffffff
