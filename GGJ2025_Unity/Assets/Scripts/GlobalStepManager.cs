@@ -14,8 +14,6 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
     [SerializeField] private List<AudioClip> _WinGameClips;
     [SerializeField] private List<AudioClip> _LoseGameClips;
 
-    // Prefab to spawn when the game ends
-    [SerializeField]
     private GraphHandler GraphHandlerPrefab;
 
     [SerializeField]
@@ -40,6 +38,15 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
     {
         // Start the coroutine to trigger steps
         StartCoroutine(StepCoroutine());
+
+        // Find and cache the GraphHandler
+        GraphHandlerPrefab = FindObjectOfType<GraphHandler>();
+
+        if (GraphHandlerPrefab == null)
+        {
+            Debug.LogError("GraphHandler not found in the scene.");
+            return;
+        }
         GraphHandlerPrefab.gameObject.SetActive(false);
     }
 
