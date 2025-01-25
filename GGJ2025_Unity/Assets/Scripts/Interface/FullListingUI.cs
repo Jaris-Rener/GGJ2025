@@ -4,10 +4,25 @@ using UnityEngine.UI;
 
 public class FullListingUI : ListingUI
 {
+    public event Action<BuildingListing> OnShow;
+    public event Action OnHide;
+
     [SerializeField] private Button _buyButton;
     [SerializeField] private Button _sellButton;
 
     private void Awake() => Hide();
+
+    public override void Show(bool playAudio = true)
+    {
+        base.Show(playAudio);
+        OnShow?.Invoke(Listing);
+    }
+
+    public override void Hide(bool playAudio = true)
+    {
+        base.Hide(playAudio);
+        OnHide?.Invoke();
+    }
 
     protected override void Start()
     {

@@ -3,6 +3,8 @@ using System;
 public class BuildingListing
 {
     public float CurrentCost => BaseCost * MarketForceManager.Instance.GetMultiplier(Location);
+    public Building Building { get; set; }
+
     public Location Location;
     public string Name;
     public BuildingType BuildingType;

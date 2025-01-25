@@ -37,6 +37,8 @@ public class MarketForceManager : Singleton<MarketForceManager>
         public NumberDrawnSettings Zero;
         public NumberDrawnSettings MinusOne;
         public NumberDrawnSettings MinusTwo;
+        public NumberDrawnSettings MaxOut;
+        public NumberDrawnSettings BottomOut;
     }
 
     [Serializable]
@@ -88,16 +90,82 @@ public class MarketForceManager : Singleton<MarketForceManager>
         if (beachPriceLevel == maxPriceLevel && savedBeachCard > 0 || beachPriceLevel == minPriceLevel && savedBeachCard < 0)
         {
             savedBeachCard = 0;
+            if (beachPriceLevel == maxPriceLevel)
+            {
+                for (int i = 0; i < beachNumberSettings.MaxOut.NumbersToAdd.Length; i++)
+                {
+                    beachDeck.AddCard(beachNumberSettings.MaxOut.NumbersToAdd[i]);
+                }
+                for (int i = 0; i < beachNumberSettings.MaxOut.NumbersToRemove.Length; i++)
+                {
+                    beachDeck.RemoveCard(beachNumberSettings.MaxOut.NumbersToAdd[i]);
+                }
+            }
+            if (beachPriceLevel == minPriceLevel)
+            {
+                for (int i = 0; i < beachNumberSettings.BottomOut.NumbersToAdd.Length; i++)
+                {
+                    beachDeck.AddCard(beachNumberSettings.BottomOut.NumbersToAdd[i]);
+                }
+                for (int i = 0; i < beachNumberSettings.BottomOut.NumbersToRemove.Length; i++)
+                {
+                    beachDeck.RemoveCard(beachNumberSettings.BottomOut.NumbersToAdd[i]);
+                }
+            }
         }
 
         if (suburbPriceLevel == maxPriceLevel && savedSuburbCard > 0 || suburbPriceLevel == minPriceLevel && savedSuburbCard < 0)
         {
             savedSuburbCard = 0;
+            if (suburbPriceLevel == maxPriceLevel)
+            {
+                for (int i = 0; i < suburbNumberSettings.MaxOut.NumbersToAdd.Length; i++)
+                {
+                    suburbDeck.AddCard(suburbNumberSettings.MaxOut.NumbersToAdd[i]);
+                }
+                for (int i = 0; i < suburbNumberSettings.MaxOut.NumbersToRemove.Length; i++)
+                {
+                    suburbDeck.RemoveCard(suburbNumberSettings.MaxOut.NumbersToAdd[i]);
+                }
+            }
+            if (suburbPriceLevel == minPriceLevel)
+            {
+                for (int i = 0; i < suburbNumberSettings.BottomOut.NumbersToAdd.Length; i++)
+                {
+                    suburbDeck.AddCard(suburbNumberSettings.BottomOut.NumbersToAdd[i]);
+                }
+                for (int i = 0; i < suburbNumberSettings.BottomOut.NumbersToRemove.Length; i++)
+                {
+                    suburbDeck.RemoveCard(suburbNumberSettings.BottomOut.NumbersToAdd[i]);
+                }
+            }
         }
 
         if (cityPriceLevel == maxPriceLevel && savedCityCard > 0 || cityPriceLevel == minPriceLevel && savedCityCard < 0)
         {
             savedCityCard = 0;
+            if (cityPriceLevel == maxPriceLevel)
+            {
+                for (int i = 0; i < cityNumberSettings.MaxOut.NumbersToAdd.Length; i++)
+                {
+                    cityDeck.AddCard(cityNumberSettings.MaxOut.NumbersToAdd[i]);
+                }
+                for (int i = 0; i < cityNumberSettings.MaxOut.NumbersToRemove.Length; i++)
+                {
+                    cityDeck.RemoveCard(cityNumberSettings.MaxOut.NumbersToAdd[i]);
+                }
+            }
+            if (cityPriceLevel == minPriceLevel)
+            {
+                for (int i = 0; i < cityNumberSettings.BottomOut.NumbersToAdd.Length; i++)
+                {
+                    cityDeck.AddCard(cityNumberSettings.BottomOut.NumbersToAdd[i]);
+                }
+                for (int i = 0; i < cityNumberSettings.BottomOut.NumbersToRemove.Length; i++)
+                {
+                    cityDeck.RemoveCard(cityNumberSettings.BottomOut.NumbersToAdd[i]);
+                }
+            }
         }
 
         string beachDeckLog = "";
@@ -106,14 +174,14 @@ public class MarketForceManager : Singleton<MarketForceManager>
             beachDeckLog += beachDeck.currentDeck[i] + " ";
         }
         string suburbDeckLog = "";
-        for (int i = 0; i < beachDeck.currentDeck.Count; i++)
+        for (int i = 0; i < suburbDeck.currentDeck.Count; i++)
         {
-            suburbDeckLog += beachDeck.currentDeck[i] + " ";
+            suburbDeckLog += suburbDeck.currentDeck[i] + " ";
         }
         string cityDeckLog = "";
-        for (int i = 0; i < beachDeck.currentDeck.Count; i++)
+        for (int i = 0; i < cityDeck.currentDeck.Count; i++)
         {
-            cityDeckLog += beachDeck.currentDeck[i] + " ";
+            cityDeckLog += cityDeck.currentDeck[i] + " ";
         }
 
         Debug.Log("Beach Deck: " + beachDeckLog);
