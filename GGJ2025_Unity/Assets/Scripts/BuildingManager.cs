@@ -9,8 +9,6 @@ public class BuildingManager : Singleton<BuildingManager>
 {
     public event Action<BuildingListing> OnListingCreated;
     public event Action<BuildingListing> OnListingRemoved;
-
-    [SerializeField] private List<string> _listingNamePool = new();
     
     [SerializeField] private int _initialListingCount = 3;
     [SerializeField] private float _minListingDelay = 3;
@@ -96,7 +94,6 @@ public class BuildingManager : Singleton<BuildingManager>
 
     public void AddListing(BuildingListing listing)
     {
-        listing.Name = _listingNamePool.GetRandom();
         listing.CreatedTime = Time.time;
         
         _listings.Add(listing);

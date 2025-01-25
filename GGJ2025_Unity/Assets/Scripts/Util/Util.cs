@@ -55,6 +55,7 @@ public static class Util
     public static BuildingListing GenerateListingFromBuilding(Building building, float lifetime)
     {
         var listing = new BuildingListing();
+        listing.Name = building.Name;
         listing.BuildingType = building.Type;
         listing.Location = building.Location;
         listing.BaseCost = GetCost(listing.BuildingType);
