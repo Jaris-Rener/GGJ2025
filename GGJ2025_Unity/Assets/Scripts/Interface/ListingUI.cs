@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,12 +11,38 @@ public class ListingUI : MonoBehaviour
     
     [SerializeField] private LocationSpriteLookup _locationIcons;
     [SerializeField] private BuildingTypeSpriteLookup _buildingIcons;
+    [SerializeField] private MarketForceSpriteLookup _marketSprites;
+    [SerializeField] private MarketForceColourLookup _marketColours;
     
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private TextMeshProUGUI _cost;
     [SerializeField] private Image _locationIcon;
     [SerializeField] private Image _buildingTypeIcon;
-    
+    [SerializeField] private Image _projectionIcon;
+
+    protected virtual void Start()
+    {
+        MarketForceManager.Instance.OnMarketUpdated += UpdateCost;
+    }
+
+    protected virtual void OnDestroy()
+    {
+        MarketForceManager.Instance.OnMarketUpdated -= UpdateCost;
+    }
+
+    private void UpdateCost()
+    {
+        SetCost(Listing.CurrentCost);
+        
+        if (_projectionIcon == null)
+            return;
+
+        // TODO: Change to next market force, not current
+        var nextMarketForce = MarketForceManager.Instance.GetCurrentMarketForce(Listing.Location);
+        _projectionIcon.sprite = _marketSprites.Get(nextMarketForce);
+        _projectionIcon.color = _marketColours.Get(nextMarketForce);
+    }
+
     public void Setup(BuildingListing listing)
     {
         if (Listing == listing)
@@ -27,12 +54,17 @@ public class ListingUI : MonoBehaviour
         Listing = listing;
         
         _name.text = listing.Name;
-        _cost.text = $"${listing.Cost}K";
+        UpdateCost();
 
         _locationIcon.sprite = _locationIcons.Get(listing.Location);
         _buildingTypeIcon.sprite = _buildingIcons.Get(listing.BuildingType);
 
         Show();
+    }
+
+    private void SetCost(float cost)
+    {
+        _cost.text = $"${cost}K";
     }
 
     public void Toggle()

@@ -32,7 +32,7 @@ public static class Util
     public static BuildingListing GenerateRandomBuilding(float lifetime)
     {
         var building = new BuildingListing();
-        building.Cost = Random.Range(100, 1000);
+        building.BaseCost = Random.Range(100, 1000);
         building.Lifetime = lifetime;
         building.CreatedTime = Time.time;
         var buildingTypes = Enum.GetNames(typeof(BuildingType));

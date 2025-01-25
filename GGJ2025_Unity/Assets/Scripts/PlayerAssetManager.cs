@@ -19,14 +19,14 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
 
     public bool Buy(BuildingListing listing)
     {
-        if (money < listing.Cost)
+        if (money < listing.CurrentCost)
         {
             Debug.Log($"Cannot afford {listing}");
             return false;
         }
 
         listing.Lifetime = -1;
-        money -= listing.Cost;
+        money -= listing.CurrentCost;
         OnMoneyChanged?.Invoke(money);
         Properties.Add(listing);
         OnPropertyAdded?.Invoke(listing);
@@ -38,7 +38,7 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
         if (!Properties.Remove(listing))
             return false;
         
-        money += listing.Cost;
+        money += listing.CurrentCost;
         OnMoneyChanged?.Invoke(money);
         OnPropertyRemoved?.Invoke(listing);
         return true;

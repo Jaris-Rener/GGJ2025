@@ -1,11 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IntToFloatMapper : MonoBehaviour
+public static class IntToFloatMapper
 {
-    private Dictionary<int, float> intToFloatMap;
+    private static Dictionary<int, float> intToFloatMap;
 
-    private void Start()
+    public static float GetMultiplier(int marketForce)
+    {
+        return intToFloatMap[marketForce];
+    }
+    
+    static IntToFloatMapper()
     {
         // Initialize the map
         intToFloatMap = new Dictionary<int, float>

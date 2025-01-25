@@ -58,11 +58,15 @@ MonoBehaviour:
   _timerImage: {fileID: 1263582467658396908}
   _locationIcons: {fileID: 11400000, guid: 1d29fd60612ac4247b80a200af12786f, type: 2}
   _buildingIcons: {fileID: 11400000, guid: 35dd281f18428d642b2f4e2d216d0949, type: 2}
+  _marketSprites: {fileID: 11400000, guid: 4992759a57908b2438cb4cbc0416cd21, type: 2}
+  _marketColours: {fileID: 11400000, guid: 8d801f2bbc63c2c47a9657b6f212bcd6, type: 2}
   _name: {fileID: 6372646052038041430}
   _cost: {fileID: 1942177833093962417}
   _locationIcon: {fileID: 1477866843537217708}
   _buildingTypeIcon: {fileID: 1781949505594948335}
+  _projectionIcon: {fileID: 4096165847678465599}
   _buyButton: {fileID: 7194705087346489898}
+  _sellButton: {fileID: 0}
 --- !u!1 &1033973715932916275
 GameObject:
   m_ObjectHideFlags: 0

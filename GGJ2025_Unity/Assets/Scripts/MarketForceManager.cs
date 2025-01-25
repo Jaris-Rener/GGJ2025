@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class MarketForceManager : Singleton<MarketForceManager>
 {
+    public event Action OnMarketUpdated;
+    
     public int beachPriceLevel = 0;
     public int suburbPriceLevel = 0;
     public int cityPriceLevel = 0;
@@ -31,6 +33,8 @@ public class MarketForceManager : Singleton<MarketForceManager>
         suburbPriceLevel = Mathf.Clamp(suburbPriceLevel + suburbRoll, -2, 2);
         cityPriceLevel = Mathf.Clamp(cityPriceLevel + cityRoll, -2, 2);
 
+        OnMarketUpdated?.Invoke();
+        
         // Log the results for debugging
         Debug.Log($"Market Update: Beach Level = {beachPriceLevel}, Suburb Level = {suburbPriceLevel}, City Level = {cityPriceLevel}");
     }
@@ -43,5 +47,21 @@ public class MarketForceManager : Singleton<MarketForceManager>
 
         // Roll the die within the range
         return UnityEngine.Random.Range(min, max);
+    }
+
+    public int GetCurrentMarketForce(Location location)
+    {
+        return location switch
+        {
+            Location.Beach => beachPriceLevel,
+            Location.City => cityPriceLevel,
+            Location.Suburbs => suburbPriceLevel,
+            _ => throw new ArgumentOutOfRangeException(nameof(location), location, null)
+        };
+    }
+    
+    public float GetMultiplier(Location location)
+    {
+        return IntToFloatMapper.GetMultiplier(GetCurrentMarketForce(location));
     }
 }

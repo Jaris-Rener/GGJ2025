@@ -9,8 +9,10 @@ public class FullListingUI : ListingUI
 
     private void Awake() => Hide();
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+        
         if (_buyButton != null)
             _buyButton.onClick.AddListener(BuyListing);
         
@@ -18,8 +20,10 @@ public class FullListingUI : ListingUI
             _sellButton.onClick.AddListener(SellListing);
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
+        
         if (_buyButton != null) 
             _buyButton.onClick.RemoveListener(BuyListing);
         
