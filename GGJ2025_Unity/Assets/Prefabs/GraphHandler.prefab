@@ -72,7 +72,7 @@ MonoBehaviour:
   graphSize: {x: 800, y: 400}
   graphScale: {x: 100, y: 100}
   backgroundColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 5
+  outlineWidth: 2
   outlineColor: {r: 0, g: 0.8, b: 1, a: 1}
   lineWidth: 8
   lineColor: {r: 1, g: 0.35, b: 0, a: 1}
@@ -94,12 +94,12 @@ MonoBehaviour:
   FixedPointOutlineSpeed: 5
   fixedPointOutlineColor: {r: 0, g: 0.8, b: 1, a: 1}
   GridTextFont: {fileID: 11400000, guid: 4832b42787f601140b8c22ccaed54019, type: 2}
-  gridSpacing: {x: 1, y: 1}
+  gridSpacing: {x: 2, y: 2}
   xAxisWidth: 3
   xAxisColor: {r: 0, g: 0.8, b: 1, a: 1}
   xAxisTextColor: {r: 0, g: 0.8, b: 1, a: 1}
-  xAxisTextSize: 10
-  xAxisTextOffset: 10
+  xAxisTextSize: 5
+  xAxisTextOffset: 5
   yAxisWidth: 3
   yAxisColor: {r: 0, g: 0.8, b: 1, a: 1}
   yAxisTextColor: {r: 0, g: 0.8, b: 1, a: 1}

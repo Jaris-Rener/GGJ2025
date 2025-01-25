@@ -40,6 +40,7 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
     {
         // Start the coroutine to trigger steps
         StartCoroutine(StepCoroutine());
+        GraphHandlerPrefab.gameObject.SetActive(false);
     }
 
     private IEnumerator StepCoroutine()
@@ -54,7 +55,6 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
             {
                 TriggerEndStep();
                 endTriggered = true;
-                Debug.Log("THE END");
             }
             else
             {
@@ -63,7 +63,6 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
             }
         }
     }
-
 
     private void TriggerStep()
     {
@@ -84,7 +83,9 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
             var loseclip = _LoseGameClips.GetRandom();
             _audioSource.PlayOneShot(loseclip);
         }
-        /*
+
+        GraphHandlerPrefab.gameObject.SetActive(true);
+
         // Create the graph
         if (GraphHandlerPrefab != null)
         {
@@ -100,7 +101,7 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
                 if (PlayerAssetManager.moneyChanged[i] < moneyMin)
                     moneyMin = PlayerAssetManager.moneyChanged[i];
             }
-            GraphHandlerPrefab.SetCornerValues(new Vector2(0f, 0f), new Vector2(PlayerAssetManager.moneyChanged.Count, PlayerAssetManager.Instance.money));
+            GraphHandlerPrefab.SetCornerValues(new Vector2(0f, moneyMin), new Vector2(PlayerAssetManager.moneyChanged.Count, moneyMax));
             GraphHandlerPrefab.UpdateGraph();
             Debug.Log("End prefab spawned.");
         }
@@ -108,7 +109,6 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
         {
             Debug.LogWarning("End prefab is not assigned.");
         }
-        */
     }
 
     public void SetStepInterval(float interval)
