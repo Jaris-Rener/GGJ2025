@@ -10,6 +10,7 @@ public class BuildingManager : Singleton<BuildingManager>
     public event Action<BuildingListing> OnListingCreated;
     public event Action<BuildingListing> OnListingRemoved;
     
+    [SerializeField] private int _minListings = 2;
     [SerializeField] private int _initialListingCount = 3;
     [SerializeField] private float _minListingDelay = 3;
     [SerializeField] private float _maxListingDelay = 10;
@@ -114,12 +115,20 @@ public class BuildingManager : Singleton<BuildingManager>
 
     public void RemoveListing(BuildingListing listing, bool returnToPool = false)
     {
-        _listings?.Remove(listing);
+        _listings.Remove(listing);
         OnListingRemoved?.Invoke(listing);
         Debug.Log($"Listing removed {listing}");
         
         if (returnToPool)
             Return(listing);
+
+        if (_listings.Count < _minListings)
+        {
+            for (int i = 0; i < _minListings - _listings.Count; i++)
+            {
+                AddListing(GetListing());
+            }
+        }
     }
 
     private readonly List<BuildingListing> _soldBuildings = new();
