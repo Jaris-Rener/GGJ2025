@@ -32,6 +32,13 @@ public class GraphHandler : MonoBehaviour
         UpdateGraphInternal(UpdateMethod.All);
     }
 
+    private void ExampleFunction()
+    {
+        for (float i = 0; i < 50; i += 0.2f)
+            CreatePoint(new Vector2(i, 0.2f * i + Mathf.Sin(i)));
+        UpdateGraph();
+    }
+
     #endregion
 
     #region references
@@ -200,6 +207,7 @@ public class GraphHandler : MonoBehaviour
             return;
         GS = GetComponent<GraphSettings>();
         PrepareGraph();
+        //ExampleFunction();
     }
     private void Update()
     {
