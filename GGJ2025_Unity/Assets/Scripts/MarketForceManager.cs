@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,11 @@ public class MarketForceManager : Singleton<MarketForceManager>
 
     private readonly List<int> defaultDeck = new List<int> { +2, +1, 0, -1, -2 };
 
+    
+    public List<int> randomizedStartingPrices = new List<int> { 2, 0, -1 };
+
+    public List<int> randomizedInitialMarket = new List<int> { -1, 1, -1 };
+
     private DeckManager beachDeck;
     private DeckManager suburbDeck;
     private DeckManager cityDeck;
@@ -25,9 +31,12 @@ public class MarketForceManager : Singleton<MarketForceManager>
     public int savedSuburbCard;
     public int savedCityCard;
 
+    public float[] intToFloatMap = { 0.5f, 0.75f, 1.0f, 1.5f, 2.0f };
+
     public DeckDrawSettings beachNumberSettings = new DeckDrawSettings();
     public DeckDrawSettings suburbNumberSettings = new DeckDrawSettings();
     public DeckDrawSettings cityNumberSettings = new DeckDrawSettings();
+    
 
     [Serializable]
     public struct DeckDrawSettings
@@ -65,13 +74,32 @@ public class MarketForceManager : Singleton<MarketForceManager>
         suburbDeck = new DeckManager(defaultDeck, removeDrawnCardsFromDecks);
         cityDeck = new DeckManager(defaultDeck, removeDrawnCardsFromDecks);
 
-        // Initialize saved cards with an initial draw
-        savedBeachCard = beachDeck.DrawCard();
-        savedSuburbCard = suburbDeck.DrawCard();
-        savedCityCard = cityDeck.DrawCard();
+        BalanceRandomIndicies(randomizedStartingPrices);
+        BalanceRandomIndicies(randomizedInitialMarket);
+
+        // Initialize saved cards with a balanced random number
+        savedBeachCard = randomizedInitialMarket[0];
+        savedSuburbCard = randomizedInitialMarket[1];
+        savedCityCard = randomizedInitialMarket[2];
+
+        beachPriceLevel = randomizedStartingPrices[0];
+        suburbPriceLevel = randomizedStartingPrices[1];
+        cityPriceLevel = randomizedStartingPrices[2];
     }
 
-    private void UpdateMarket()
+    private void BalanceRandomIndicies(List<int> randomizedIndices)
+    {
+        for (int i = 0; i < randomizedIndices.Count; i++)
+        {
+            // Generate a random index within the list range
+            int randomIndex = UnityEngine.Random.Range(0, randomizedIndices.Count);
+
+            // Swap the current element with the element at the random index
+            (randomizedIndices[i], randomizedIndices[randomIndex]) = (randomizedIndices[randomIndex], randomizedIndices[i]);
+        }
+    }
+
+private void UpdateMarket()
     {
         // Apply saved cards to adjust price levels
         AdjustPriceLevel(ref beachPriceLevel, savedBeachCard);
@@ -221,9 +249,16 @@ public class MarketForceManager : Singleton<MarketForceManager>
         };
     }
 
-    public float GetMultiplier(Location location)
+    public float GetMultiplier(Location key)
     {
-        return IntToFloatMapper.GetMultiplier(GetCurrentMarketForce(location));
+        
+        int index = (int)GetCurrentMarketForce(key) + 2; // Map key (-2 to 2) to array index (0 to 4)
+
+        if (key >= 0 && (int)key < intToFloatMap.Length)
+        {
+            return intToFloatMap[index];
+        }
+        throw new IndexOutOfRangeException($"Key {key} is out of range.");
     }
 
     private void OnCardDrawn(int cardValue, DeckManager deck)
