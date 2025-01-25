@@ -11,11 +11,12 @@ public class ListingUI : MonoBehaviour
     
     [SerializeField] private LocationSpriteLookup _locationIcons;
     [SerializeField] private BuildingTypeSpriteLookup _buildingIcons;
-    [SerializeField] private MarketForceSpriteLookup _marketSprites;
-    [SerializeField] private MarketForceColourLookup _marketColours;
+    [SerializeField] private IntToSpriteLookup _marketSprites;
+    [SerializeField] private IntToColourLookup _marketColours;
     
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private TextMeshProUGUI _cost;
+    [SerializeField] private TextMeshProUGUI _buyCost;
     [SerializeField] private Image _locationIcon;
     [SerializeField] private Image _buildingTypeIcon;
     [SerializeField] private Image _projectionIcon;
@@ -37,8 +38,7 @@ public class ListingUI : MonoBehaviour
         if (_projectionIcon == null)
             return;
 
-        // TODO: Change to next market force, not current
-        var nextMarketForce = MarketForceManager.Instance.GetCurrentMarketForce(Listing.Location);
+        var nextMarketForce = MarketForceManager.Instance.GetMarketDirection(Listing.Location);
         _projectionIcon.sprite = _marketSprites.Get(nextMarketForce);
         _projectionIcon.color = _marketColours.Get(nextMarketForce);
     }
@@ -55,6 +55,17 @@ public class ListingUI : MonoBehaviour
         
         _name.text = listing.Name;
         UpdateCost();
+
+        if (listing.BuyCost > 0)
+        {
+            if (_buyCost != null)
+                _buyCost.text = $"Bought at: ${listing.BuyCost}K";
+        }
+        else
+        {
+            if (_buyCost != null)
+                _buyCost.text = $"Median price: ${listing.BaseCost}K";
+        }
 
         _locationIcon.sprite = _locationIcons.Get(listing.Location);
         _buildingTypeIcon.sprite = _buildingIcons.Get(listing.BuildingType);

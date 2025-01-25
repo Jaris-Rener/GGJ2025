@@ -11,6 +11,9 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
     [SerializeField]
     private float stepInterval = 1.0f;
     
+    public float LastStepTime { get; private set; }
+    public float NextStepTime { get; private set; }
+    
     private void Start()
     {
         // Start the coroutine to trigger steps
@@ -21,6 +24,8 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
     {
         while (true)
         {
+            LastStepTime = Time.time;
+            NextStepTime = Time.time + stepInterval;
             yield return new WaitForSeconds(stepInterval);
             TriggerStep();
         }

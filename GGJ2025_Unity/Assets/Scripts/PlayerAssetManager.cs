@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PlayerAssetManager : Singleton<PlayerAssetManager>
 {
+    [SerializeField] private int _maxProperties = 10;
+    
     public event Action<float> OnMoneyChanged;
     public event Action<BuildingListing> OnPropertyAdded;
     public event Action<BuildingListing> OnPropertyRemoved;
     
     public float money = 1000.0f;
     public float taxRate = 0.3f;
+    public float minimumTaxAmount = 50.0f;
     public List<BuildingListing> Properties = new();
 
     private void Start()
@@ -19,13 +22,20 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
 
     public bool Buy(BuildingListing listing)
     {
-        if (money < listing.CurrentCost)
+        if (Properties.Count >= _maxProperties)
         {
-            Debug.Log($"Cannot afford {listing}");
+            Debug.Log("Too many properties owned");
             return false;
         }
+        
+        // if (money < listing.CurrentCost)
+        // {
+        //     Debug.Log($"Cannot afford {listing}");
+        //     return false;
+        // }
 
         listing.Lifetime = -1;
+        listing.BuyCost = listing.CurrentCost;
         money -= listing.CurrentCost;
         OnMoneyChanged?.Invoke(money);
         Properties.Add(listing);
@@ -66,15 +76,25 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
 
     public float TaxPlayer()
     {
+        float taxedAmount;
+
         if (money >= 0)
         {
             // Decrease positive money by 30%
-            return money * (1 - taxRate);
+            taxedAmount = money * (1 - taxRate);
         }
         else
         {
             // Increase debt (negative money) by 30%
-            return money * (1 + taxRate);
+            taxedAmount = money * (1 + taxRate);
         }
+
+        // Ensure taxed amount is at least the minimum tax amount
+        if (money - taxedAmount < minimumTaxAmount)
+        {
+            taxedAmount = money - minimumTaxAmount;
+        }
+
+        return taxedAmount;
     }
 }

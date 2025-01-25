@@ -6,6 +6,7 @@ public class BuildingListing
     public Location Location;
     public string Name;
     public BuildingType BuildingType;
+    public float BuyCost;
     public float BaseCost;
     public float Lifetime;
     public float CreatedTime;
