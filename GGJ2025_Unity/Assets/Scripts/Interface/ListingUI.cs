@@ -116,6 +116,7 @@ public class ListingUI : MonoBehaviour
     {
         Active = true;
         _canvasGroup.alpha = 1;
+        _canvasGroup.blocksRaycasts = true;
         if (playAudio)
             _audioSource.PlayOneShot(_showClip);
     }
@@ -124,6 +125,7 @@ public class ListingUI : MonoBehaviour
     {
         Active = false;
         _canvasGroup.alpha = 0;
+        _canvasGroup.blocksRaycasts = false;
         if (playAudio)
             _audioSource.PlayOneShot(_hideClip);
     }
