@@ -80,41 +80,51 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
     private void TriggerEndStep()
     {
         OnEndStep?.Invoke();
-        if (PlayerAssetManager.Instance.money > PlayerAssetManager.Instance.startingMoney) 
-        {
-            var winclip = _WinGameClips.GetRandom();
-            _audioSource.PlayOneShot(winclip);
-        }
-        else
-        {
-            var loseclip = _LoseGameClips.GetRandom();
-            _audioSource.PlayOneShot(loseclip);
-        }
 
         GraphHandlerPrefab.gameObject.SetActive(true);
+        StartCoroutine(DelayedExecution());
+    }
 
-        // Create the graph
-        if (GraphHandlerPrefab != null)
+    private IEnumerator DelayedExecution()
+    {
+        // Play the appropriate audio clip
+        if (PlayerAssetManager.Instance.money > PlayerAssetManager.Instance.startingMoney)
         {
-            float moneyMin = 9999999999.0f;
-            float moneyMax = -9999999999.0f;
-            for (int i = 0; i < PlayerAssetManager.moneyChanged.Count; i++)
-            {
-                Debug.Log("CreatePoint");
-                GraphHandlerPrefab.CreatePoint(new Vector2(i, PlayerAssetManager.moneyChanged[i]));
-                if (PlayerAssetManager.moneyChanged[i] > moneyMax)
-                    moneyMax = PlayerAssetManager.moneyChanged[i];
-
-                if (PlayerAssetManager.moneyChanged[i] < moneyMin)
-                    moneyMin = PlayerAssetManager.moneyChanged[i];
-            }
-            GraphHandlerPrefab.SetCornerValues(new Vector2(0f, moneyMin), new Vector2(PlayerAssetManager.moneyChanged.Count, moneyMax));
-            GraphHandlerPrefab.UpdateGraph();
-            Debug.Log("End prefab spawned.");
+            var winClip = _WinGameClips.GetRandom();
+            _audioSource.PlayOneShot(winClip);
         }
         else
         {
-            Debug.LogWarning("End prefab is not assigned.");
+            var loseClip = _LoseGameClips.GetRandom();
+            _audioSource.PlayOneShot(loseClip);
+        }
+
+        // Delay for 2 seconds (change duration as needed)
+        yield return new WaitForSeconds(0.5f);
+
+        // Activate the GraphHandlerPrefab and create the graph
+        if (GraphHandlerPrefab != null)
+        {
+            GraphHandlerPrefab.gameObject.SetActive(true);
+
+            float moneyMin = float.MaxValue;
+            float moneyMax = float.MinValue;
+
+            for (int i = 0; i < PlayerAssetManager.moneyChanged.Count; i++)
+            {
+                GraphHandlerPrefab.CreatePoint(new Vector2(i, PlayerAssetManager.moneyChanged[i]));
+                moneyMax = Mathf.Max(moneyMax, PlayerAssetManager.moneyChanged[i]);
+                moneyMin = Mathf.Min(moneyMin, PlayerAssetManager.moneyChanged[i]);
+            }
+
+            GraphHandlerPrefab.SetCornerValues(new Vector2(-1f, moneyMin), new Vector2(PlayerAssetManager.moneyChanged.Count + 1, moneyMax));
+            GraphHandlerPrefab.UpdateGraph();
+
+            Debug.Log("GraphHandlerPrefab updated after delay.");
+        }
+        else
+        {
+            Debug.LogWarning("GraphHandlerPrefab is not assigned.");
         }
     }
 
