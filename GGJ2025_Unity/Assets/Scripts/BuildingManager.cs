@@ -9,7 +9,8 @@ public class BuildingManager : Singleton<BuildingManager>
 {
     public event Action<BuildingListing> OnListingCreated;
     public event Action<BuildingListing> OnListingRemoved;
-    
+
+    [SerializeField] private AnimationCurve _speedMultiplier;
     [SerializeField] private int _minListings = 2;
     [SerializeField] private int _initialListingCount = 3;
     [SerializeField] private float _minListingDelay = 3;
@@ -81,6 +82,7 @@ public class BuildingManager : Singleton<BuildingManager>
         while (true)
         {
             var delay = Random.Range(_minListingDelay, _maxListingDelay);
+            delay *= _speedMultiplier.Evaluate(Time.time - GlobalStepManager.Instance.StartTime);
             yield return new WaitForSeconds(delay);
 
             var newListings = Random.Range(_minNewListings, _maxNewListings);

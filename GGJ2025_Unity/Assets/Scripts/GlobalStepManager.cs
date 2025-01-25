@@ -15,13 +15,14 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
     [SerializeField]
     private int stepCount = 15;
 
-    private float currentStepCount = 0;
+    private int currentStepCount = 0;
 
     bool endTriggered = false;
     
     public float LastStepTime { get; private set; }
     public float NextStepTime { get; private set; }
-    
+    public float StartTime { get; private set; }
+
     private void Start()
     {
         // Start the coroutine to trigger steps
@@ -30,6 +31,7 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
 
     private IEnumerator StepCoroutine()
     {
+        StartTime = Time.time;
         while (endTriggered == false)
         {
             LastStepTime = Time.time;
@@ -48,6 +50,7 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
             }
         }
     }
+
 
     private void TriggerStep()
     {
