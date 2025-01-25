@@ -37,8 +37,8 @@ public class LocationInfoUI : MonoBehaviour
             MarketForceManager.Instance.maxPriceLevel,
             curForce);
 
-        _marketStrength.color = Color.Lerp(Color.red, Color.green, marketStrength);
-        _marketStrength.fillAmount = marketStrength;
+        _marketStrength.color = _marketColours.Get(curForce);
+        _marketStrength.fillAmount = Mathf.Max(0.05f, marketStrength);
         
         var force = MarketForceManager.Instance.GetMarketDirection(Location);
         _projectionImage.sprite = _marketSprites.Get(force);
