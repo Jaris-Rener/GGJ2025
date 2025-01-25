@@ -110,7 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2268821238032366174, guid: 1c124a2cf5e22574ca13f86f8bcda90b, type: 3}
       propertyPath: _name
-      value: Haunted House
+      value: Taste of Suburbia
       objectReference: {fileID: 0}
     - target: {fileID: 2268821238032366174, guid: 1c124a2cf5e22574ca13f86f8bcda90b, type: 3}
       propertyPath: _type
@@ -706,7 +706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2268821238032366174, guid: 43b66507de1b0e140a47bea7d0a1aab1, type: 3}
       propertyPath: _name
-      value: Metropolitan Mansion
+      value: The Metropolitan
       objectReference: {fileID: 0}
     - target: {fileID: 2268821238032366174, guid: 43b66507de1b0e140a47bea7d0a1aab1, type: 3}
       propertyPath: _type
@@ -858,7 +858,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2268821238032366174, guid: adf3d54bae5bce842ba8f3f4b9c20750, type: 3}
       propertyPath: _name
-      value: Sunny Short Heights
+      value: Summer Heights
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1718,7 +1718,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2268821238032366174, guid: 43b66507de1b0e140a47bea7d0a1aab1, type: 3}
       propertyPath: _name
-      value: Margaret Court
+      value: Mrs. Mansion
       objectReference: {fileID: 0}
     - target: {fileID: 2268821238032366174, guid: 43b66507de1b0e140a47bea7d0a1aab1, type: 3}
       propertyPath: _type
@@ -1800,7 +1800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2268821238032366174, guid: adf3d54bae5bce842ba8f3f4b9c20750, type: 3}
       propertyPath: _name
-      value: Peninsula Paradise
+      value: Peninsula Penthouse
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
