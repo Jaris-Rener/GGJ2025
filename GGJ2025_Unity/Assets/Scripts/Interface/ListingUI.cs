@@ -19,6 +19,7 @@ public class ListingUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private TextMeshProUGUI _cost;
     [SerializeField] private TextMeshProUGUI _buyCost;
+    [SerializeField] private TextMeshProUGUI _costSubtitle;
     [SerializeField] private Image _locationIcon;
     [SerializeField] private Image _buildingTypeIcon;
     [SerializeField] private Image _projectionIcon;
@@ -72,12 +73,18 @@ public class ListingUI : MonoBehaviour
         if (listing.BuyCost > 0)
         {
             if (_buyCost != null)
-                _buyCost.text = $"Bought at: ${listing.BuyCost:N0}K";
+            {
+                _buyCost.text = $"${listing.BuyCost:N0}K";
+                _costSubtitle.text = "At Purchase";
+            }
         }
         else
         {
             if (_buyCost != null)
-                _buyCost.text = $"Median price: ${listing.BaseCost:N0}K";
+            {
+                _buyCost.text = $"${listing.BaseCost:N0}K";
+                _costSubtitle.text = "Median";
+            }
         }
 
         _locationIcon.sprite = _locationIcons.Get(listing.Location);
