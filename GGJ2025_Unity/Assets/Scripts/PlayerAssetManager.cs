@@ -16,12 +16,23 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
     public float minimumTaxAmount = 50.0f;
     public List<BuildingListing> Properties = new();
 
-    public static int propertiesBought = 0;
-    public static int propertiesSold = 0;
+    public static int beachPropertiesBought = 0;
+    public static int suburbPropertiesBought = 0;
+    public static int cityPropertiesBought = 0;
+    public static int totalPropertiesBought = 0;
+
+    public static int beachPropertiesSold = 0;
+    public static int subrubPropertiesSold = 0;
+    public static int cityPropertiesSold = 0;
+    public static int totalPropertiesSold = 0;
+
+    public static float totalTaxPaid = 0;
+    public static float totalInterestPaid = 0;
+    public static float totalProfit = 0;
+    public static float totalLosses = 0;
 
     public static List<float> moneyChanged = new();
     private float currentMoney = 0.0f;
-
 
 
     private void Start()
@@ -46,16 +57,11 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
             Debug.Log("Too many properties owned");
             return false;
         }
-        
-        // if (money < listing.CurrentCost)
-        // {
-        //     Debug.Log($"Cannot afford {listing}");
-        //     return false;
-        // }
 
         listing.Lifetime = -1;
         listing.BuyCost = listing.CurrentCost;
         money -= listing.CurrentCost;
+
         OnMoneyChanged?.Invoke(money);
         Properties.Add(listing);
         OnPropertyAdded?.Invoke(listing);
@@ -68,6 +74,15 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
             return false;
         
         money += listing.CurrentCost;
+        if (listing.BuyCost > listing.CurrentCost)
+        {
+            totalLosses += listing.BuyCost - listing.CurrentCost;
+        }
+        else if (listing.BuyCost < listing.CurrentCost) 
+        {
+            totalProfit += listing.CurrentCost - listing.BuyCost;
+        }
+
         OnMoneyChanged?.Invoke(money);
         OnPropertyRemoved?.Invoke(listing);
         BuildingManager.Instance.Return(listing);
@@ -102,11 +117,13 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
         {
             // Decrease positive money by 30%
             taxedAmount = money * (1 - taxRate);
+            totalTaxPaid += taxedAmount;
         }
         else
         {
             // Increase debt (negative money) by 30%
             taxedAmount = money * (1 + taxRate);
+            totalInterestPaid += taxedAmount;
         }
 
         // Ensure taxed amount is at least the minimum tax amount
@@ -115,6 +132,7 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
             taxedAmount = money - minimumTaxAmount;
         }
 
+        totalTaxPaid += taxedAmount;
         return taxedAmount;
     }
 }

@@ -49,7 +49,24 @@ public class FullListingUI : ListingUI
     private void SellListing()
     {
         PlayerAssetManager.Instance.Sell(Listing);
-        PlayerAssetManager.propertiesSold++;
+        PlayerAssetManager.totalPropertiesSold++;
+
+        // Increment based on location
+        switch (Listing.Location)
+        {
+            case Location.Beach:
+                PlayerAssetManager.beachPropertiesSold++;
+                break;
+            case Location.City:
+                PlayerAssetManager.cityPropertiesSold++;
+                break;
+            case Location.Suburbs:
+                PlayerAssetManager.subrubPropertiesSold++;
+                break;
+            default:
+                Debug.LogWarning("Unknown location.");
+                break;
+        }
     }
 
     private void BuyListing()
@@ -58,7 +75,24 @@ public class FullListingUI : ListingUI
         if (success)
         {
             BuildingManager.Instance.RemoveListing(Listing);
-            PlayerAssetManager.propertiesBought++;
+            PlayerAssetManager.totalPropertiesBought++;
+
+            // Increment based on location
+            switch (Listing.Location)
+            {
+                case Location.Beach:
+                    PlayerAssetManager.beachPropertiesBought++;
+                    break;
+                case Location.City:
+                    PlayerAssetManager.cityPropertiesBought++;
+                    break;
+                case Location.Suburbs:
+                    PlayerAssetManager.suburbPropertiesBought++;
+                    break;
+                default:
+                    Debug.LogWarning("Unknown location.");
+                    break;
+            }
         }
        
     }
