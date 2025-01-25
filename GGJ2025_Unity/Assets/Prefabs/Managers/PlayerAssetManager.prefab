@@ -44,3 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603142f6aca4b19438aee78662a6cce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxProperties: 100
+  money: 5000
+  taxRate: 0.3
+  minimumTaxAmount: 50
