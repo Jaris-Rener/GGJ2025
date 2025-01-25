@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxProperties: 9
+  startingMoney: 5000
+  money: 5000
   taxRate: 0.1
   minimumTaxAmount: 50
 --- !u!82 &5572132689948391927
