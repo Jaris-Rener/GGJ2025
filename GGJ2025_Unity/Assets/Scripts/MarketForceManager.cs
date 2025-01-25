@@ -85,6 +85,21 @@ public class MarketForceManager : Singleton<MarketForceManager>
         OnCardDrawn(savedSuburbCard, suburbDeck);
         OnCardDrawn(savedCityCard, cityDeck);
 
+        if (beachPriceLevel == maxPriceLevel && savedBeachCard > 0 || beachPriceLevel == minPriceLevel && savedBeachCard < 0)
+        {
+            savedBeachCard = 0;
+        }
+
+        if (suburbPriceLevel == maxPriceLevel && savedSuburbCard > 0 || suburbPriceLevel == minPriceLevel && savedSuburbCard < 0)
+        {
+            savedSuburbCard = 0;
+        }
+
+        if (cityPriceLevel == maxPriceLevel && savedCityCard > 0 || cityPriceLevel == minPriceLevel && savedCityCard < 0)
+        {
+            savedCityCard = 0;
+        }
+
         string beachDeckLog = "";
         for (int i = 0; i < beachDeck.currentDeck.Count; i++)
         {
