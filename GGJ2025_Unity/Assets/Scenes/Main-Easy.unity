@@ -2468,7 +2468,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1288382981834044251, guid: 1517c2a7d58ee854a9683c5de7cbc3be, type: 3}
       propertyPath: stepCount
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -1288382981834044251, guid: 1517c2a7d58ee854a9683c5de7cbc3be, type: 3}
       propertyPath: _audioSource
