@@ -48,10 +48,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7015977563269556611, guid: e4e04a41315b66b45be8307191367477, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7434b33a0792c3442bc9dac30fd07640, type: 2}
+    - target: {fileID: -6609001934792292544, guid: e4e04a41315b66b45be8307191367477, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 66c519886220e904fa2ca43fc79c8403, type: 2}
+    - target: {fileID: -6602419491084648784, guid: e4e04a41315b66b45be8307191367477, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 29607c25c0a3dcd4d93d870022040023, type: 2}
+    - target: {fileID: -1791021718884840133, guid: e4e04a41315b66b45be8307191367477, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7487a0f97cfde9d4cb45f9c05c513642, type: 2}
     - target: {fileID: 919132149155446097, guid: e4e04a41315b66b45be8307191367477, type: 3}
       propertyPath: m_Name
       value: mansion_blockout_v01
       objectReference: {fileID: 0}
+    - target: {fileID: 1912274164703201683, guid: e4e04a41315b66b45be8307191367477, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5b05588e97f2b814bbe73a59c0a3e7dd, type: 2}
+    - target: {fileID: 7331060056550643028, guid: e4e04a41315b66b45be8307191367477, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 96708040690903f4c90e7e03c9802438, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
