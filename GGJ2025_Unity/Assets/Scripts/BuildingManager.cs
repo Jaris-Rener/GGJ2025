@@ -41,6 +41,17 @@ public class BuildingManager : Singleton<BuildingManager>
 
     public BuildingListing GetListing()
     {
+        if (_listingPool.Count <= 0)
+        {
+            _soldBuildings.Shuffle();
+            foreach (var building in _soldBuildings)
+            {
+                _listingPool.Push(building);
+            }
+            
+            _soldBuildings.Clear();
+        }
+        
         var listing = _listingPool.Pop();
         return listing;
     }
@@ -106,5 +117,11 @@ public class BuildingManager : Singleton<BuildingManager>
         _listings?.Remove(listing);
         OnListingRemoved?.Invoke(listing);
         Debug.Log($"Listing removed {listing}");
+    }
+
+    private List<BuildingListing> _soldBuildings = new();
+    public void Return(BuildingListing listing)
+    {
+        _soldBuildings.Add(listing);
     }
 }
