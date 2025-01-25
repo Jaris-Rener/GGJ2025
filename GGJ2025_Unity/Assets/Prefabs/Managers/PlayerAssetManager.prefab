@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxProperties: 100
   money: 5000
-  taxRate: 0.3
+  taxRate: 0.2
   minimumTaxAmount: 50
 --- !u!82 &5572132689948391927
 AudioSource:
