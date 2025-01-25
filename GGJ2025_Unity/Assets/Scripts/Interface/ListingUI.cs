@@ -72,12 +72,12 @@ public class ListingUI : MonoBehaviour
         if (listing.BuyCost > 0)
         {
             if (_buyCost != null)
-                _buyCost.text = $"Bought at: ${listing.BuyCost}K";
+                _buyCost.text = $"Bought at: ${listing.BuyCost:N0}K";
         }
         else
         {
             if (_buyCost != null)
-                _buyCost.text = $"Median price: ${listing.BaseCost}K";
+                _buyCost.text = $"Median price: ${listing.BaseCost:N0}K";
         }
 
         _locationIcon.sprite = _locationIcons.Get(listing.Location);
@@ -101,7 +101,7 @@ public class ListingUI : MonoBehaviour
         {
             _cost.color = _defaultCostColour;
         }
-        _cost.text = $"${cost}K";
+        _cost.text = $"${cost:N0}K";
     }
 
     public void Toggle(bool playAudio)

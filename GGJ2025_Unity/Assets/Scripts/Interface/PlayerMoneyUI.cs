@@ -31,5 +31,6 @@ public class PlayerMoneyUI : MonoBehaviour
     private void UpdateMoney(float currentMoney)
     {
         _moneyLabel.text = $"${currentMoney:N0}K";
+        OnMarketUpdated();
     }
 }
