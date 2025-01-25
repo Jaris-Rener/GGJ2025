@@ -51,6 +51,7 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
         money += listing.CurrentCost;
         OnMoneyChanged?.Invoke(money);
         OnPropertyRemoved?.Invoke(listing);
+        BuildingManager.Instance.Return(listing);
         return true;
     }
     
