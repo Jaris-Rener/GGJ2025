@@ -70,7 +70,7 @@ public class BuildingManager : Singleton<BuildingManager>
             var curTime = Time.time - listing.CreatedTime;
             if (curTime > listing.Lifetime)
             {
-                RemoveListing(listing);
+                RemoveListing(listing, true);
             }
         }
     }
@@ -112,14 +112,17 @@ public class BuildingManager : Singleton<BuildingManager>
         Debug.Log($"New listing {listing}");
     }
 
-    public void RemoveListing(BuildingListing listing)
+    public void RemoveListing(BuildingListing listing, bool returnToPool = false)
     {
         _listings?.Remove(listing);
         OnListingRemoved?.Invoke(listing);
         Debug.Log($"Listing removed {listing}");
+        
+        if (returnToPool)
+            Return(listing);
     }
 
-    private List<BuildingListing> _soldBuildings = new();
+    private readonly List<BuildingListing> _soldBuildings = new();
     public void Return(BuildingListing listing)
     {
         _soldBuildings.Add(listing);

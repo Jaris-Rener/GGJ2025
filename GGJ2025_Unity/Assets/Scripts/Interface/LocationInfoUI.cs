@@ -13,6 +13,7 @@ public class LocationInfoUI : MonoBehaviour
 
     [SerializeField] private Image _locationImage;
     [SerializeField] private Image _projectionImage;
+    [SerializeField] private Image _marketStrength;
     [SerializeField] private TextMeshProUGUI _valueTxt;
 
     private void Start()
@@ -30,6 +31,15 @@ public class LocationInfoUI : MonoBehaviour
 
     private void OnMarketUpdated()
     {
+        var curForce = MarketForceManager.Instance.GetCurrentMarketForce(Location);
+        var marketStrength = Mathf.InverseLerp(
+            MarketForceManager.Instance.minPriceLevel,
+            MarketForceManager.Instance.maxPriceLevel,
+            curForce);
+
+        _marketStrength.color = Color.Lerp(Color.red, Color.green, marketStrength);
+        _marketStrength.fillAmount = marketStrength;
+        
         var force = MarketForceManager.Instance.GetMarketDirection(Location);
         _projectionImage.sprite = _marketSprites.Get(force);
         _projectionImage.color = _marketColours.Get(force);
