@@ -26,6 +26,10 @@ public class ListingUI : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _showClip;
     [SerializeField] private AudioClip _hideClip;
+    
+    [SerializeField] private Color _profitColour;
+    [SerializeField] private Color _defaultCostColour;
+    [SerializeField] private Color _lossColour;
 
     protected virtual void Start()
     {
@@ -84,6 +88,19 @@ public class ListingUI : MonoBehaviour
 
     private void SetCost(float cost)
     {
+        if (Listing.BuyCost > 0)
+        {
+            if (Listing.BuyCost < Listing.CurrentCost)
+                _cost.color = _profitColour;
+            else if (Listing.BuyCost == Listing.CurrentCost)
+                _cost.color = _defaultCostColour;
+            else
+                _cost.color = _lossColour;
+        }
+        else
+        {
+            _cost.color = _defaultCostColour;
+        }
         _cost.text = $"${cost}K";
     }
 

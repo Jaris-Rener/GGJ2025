@@ -626,6 +626,9 @@ MonoBehaviour:
   _audioSource: {fileID: 2119543741099755357}
   _showClip: {fileID: 8300000, guid: b4391a44c85bb3748822a7f331e99b0d, type: 3}
   _hideClip: {fileID: 8300000, guid: 16b580cac67132b429e6f75f267c66f3, type: 3}
+  _profitColour: {r: 0.22090206, g: 0.7132075, b: 0.14398716, a: 1}
+  _defaultCostColour: {r: 0, g: 0.44196606, b: 1, a: 1}
+  _lossColour: {r: 0.8792453, g: 0.1642363, b: 0.1642363, a: 1}
 --- !u!82 &2119543741099755357
 AudioSource:
   m_ObjectHideFlags: 0
