@@ -12,7 +12,7 @@ public class PlayerListingsUI : MonoBehaviour
     
     public BuildingListing Selected { get; set; }
     
-    private void Start()
+    private void Awake()
     {
         PlayerAssetManager.Instance.OnPropertyAdded += AddProperty;
         PlayerAssetManager.Instance.OnPropertyRemoved += RemoveProperty;
@@ -27,7 +27,7 @@ public class PlayerListingsUI : MonoBehaviour
     private void AddProperty(BuildingListing listing)
     {
         var instance = Instantiate(_listingPrefab, _listingsRoot);
-        instance.Setup(listing);
+        instance.Setup(listing, false);
         instance.OnSelected += OnSelected;
         instance.Show();
         _instances.Add(instance);
@@ -35,7 +35,7 @@ public class PlayerListingsUI : MonoBehaviour
 
     private void OnSelected(BuildingListing listing)
     {
-        _fullListingUI.Setup(listing);
+        _fullListingUI.Setup(listing, true);
         Selected = listing;
     }
 

@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class ListingUI : MonoBehaviour
 {
+    public bool Active { get; private set; }
     public BuildingListing Listing { get; private set; }
 
+    [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private Image _timerImage;
     
     [SerializeField] private LocationSpriteLookup _locationIcons;
@@ -20,6 +22,10 @@ public class ListingUI : MonoBehaviour
     [SerializeField] private Image _locationIcon;
     [SerializeField] private Image _buildingTypeIcon;
     [SerializeField] private Image _projectionIcon;
+    
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _showClip;
+    [SerializeField] private AudioClip _hideClip;
 
     protected virtual void Start()
     {
@@ -33,8 +39,11 @@ public class ListingUI : MonoBehaviour
 
     private void UpdateCost()
     {
-        SetCost(Listing.CurrentCost);
+        if (Listing == null)
+            return;
         
+        SetCost(Listing.CurrentCost);
+
         if (_projectionIcon == null)
             return;
 
@@ -43,11 +52,11 @@ public class ListingUI : MonoBehaviour
         _projectionIcon.color = _marketColours.Get(nextMarketForce);
     }
 
-    public void Setup(BuildingListing listing)
+    public void Setup(BuildingListing listing, bool playAudio)
     {
         if (Listing == listing)
         {
-            Toggle();
+            Toggle(playAudio);
             return;
         }
 
@@ -70,7 +79,7 @@ public class ListingUI : MonoBehaviour
         _locationIcon.sprite = _locationIcons.Get(listing.Location);
         _buildingTypeIcon.sprite = _buildingIcons.Get(listing.BuildingType);
 
-        Show();
+        Show(playAudio);
     }
 
     private void SetCost(float cost)
@@ -78,24 +87,28 @@ public class ListingUI : MonoBehaviour
         _cost.text = $"${cost}K";
     }
 
-    public void Toggle()
+    public void Toggle(bool playAudio)
     {
-        gameObject.SetActive(!gameObject.activeSelf);
+        if (Active)
+            Hide(playAudio);
+        else
+            Show(playAudio);
     }
 
-    public void Show()
+    public void Show(bool playAudio = true)
     {
-        gameObject.SetActive(true);
+        Active = true;
+        _canvasGroup.alpha = 1;
+        if (playAudio)
+            _audioSource.PlayOneShot(_showClip);
     }
 
-    public void Hide()
+    public void Hide(bool playAudio = true)
     {
-        gameObject.SetActive(false);
-    }
-
-    private void OnListingRemoved()
-    {
-        Hide();
+        Active = false;
+        _canvasGroup.alpha = 0;
+        if (playAudio)
+            _audioSource.PlayOneShot(_hideClip);
     }
 
     private void Update()

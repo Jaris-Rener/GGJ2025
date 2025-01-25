@@ -13,6 +13,7 @@ public class PlayerMoneyUI : MonoBehaviour
         MarketForceManager.Instance.OnMarketUpdated += OnMarketUpdated;
         
         OnMarketUpdated();
+        UpdateMoney(PlayerAssetManager.Instance.money);
     }
 
     private void OnDestroy()
