@@ -48,8 +48,8 @@ MonoBehaviour:
   _location: 0
   _name: 
   mansionOptions:
-  - {fileID: 1269278804506738669, guid: 43b66507de1b0e140a47bea7d0a1aab1, type: 3}
+  - {fileID: 919132149155446097, guid: e4e04a41315b66b45be8307191367477, type: 3}
   apartmentOptions:
-  - {fileID: 1269278804506738669, guid: adf3d54bae5bce842ba8f3f4b9c20750, type: 3}
+  - {fileID: 919132149155446097, guid: 0e2dbaa2ae3666d4ca60d3124ce04c70, type: 3}
   houseOptions:
-  - {fileID: 1269278804506738669, guid: 1c124a2cf5e22574ca13f86f8bcda90b, type: 3}
+  - {fileID: 919132149155446097, guid: ac1a401b14ef1c84fbb7ea3ffd24e303, type: 3}
