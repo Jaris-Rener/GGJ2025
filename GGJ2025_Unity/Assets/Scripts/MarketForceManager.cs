@@ -25,6 +25,25 @@ public class MarketForceManager : Singleton<MarketForceManager>
     public int savedSuburbCard;
     public int savedCityCard;
 
+    public DeckDrawSettings NumberSettings = new DeckDrawSettings();
+
+    [Serializable]
+    public struct DeckDrawSettings
+    {
+        public NumberDrawnSettings PlusTwo;
+        public NumberDrawnSettings PlusOne;
+        public NumberDrawnSettings Zero;
+        public NumberDrawnSettings MinusOne;
+        public NumberDrawnSettings MinusTwo;
+    }
+
+    [Serializable]
+    public struct NumberDrawnSettings
+    {
+        public List<int> NumbersToAdd;
+        public List<int> NumbersToRemove;
+    }
+
     private void OnEnable()
     {
         GlobalStepManager.OnStep += UpdateMarket;
