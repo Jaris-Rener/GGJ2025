@@ -44,3 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 602143254ca3e5443bf016ac5a2f890a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 0
+  _location: 0
+  _name: 
+  mansionOptions:
+  - {fileID: 1269278804506738669, guid: 43b66507de1b0e140a47bea7d0a1aab1, type: 3}
+  apartmentOptions:
+  - {fileID: 1269278804506738669, guid: adf3d54bae5bce842ba8f3f4b9c20750, type: 3}
+  houseOptions:
+  - {fileID: 1269278804506738669, guid: 1c124a2cf5e22574ca13f86f8bcda90b, type: 3}

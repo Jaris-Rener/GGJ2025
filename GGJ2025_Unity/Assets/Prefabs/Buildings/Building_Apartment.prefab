@@ -114,6 +114,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3242876274835343082, guid: dcae07402ccc8774a8100763344ec679, type: 3}
+      propertyPath: 'apartmentOptions.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1269278804506738669}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -122,6 +126,11 @@ PrefabInstance:
       addedObject: {fileID: 2075185655792683929}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcae07402ccc8774a8100763344ec679, type: 3}
+--- !u!1 &1269278804506738669 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2585093083147518809, guid: dcae07402ccc8774a8100763344ec679, type: 3}
+  m_PrefabInstance: {fileID: 3638198418211191988}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1611646257728644518 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2603306624258758930, guid: dcae07402ccc8774a8100763344ec679, type: 3}
