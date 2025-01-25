@@ -44,3 +44,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a984f8dd47d40f592b124b691b0b74c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _listingNamePool:
+  - Melbourne Manor
+  - Degraves Street Cafe
+  - Eureka Tower
+  - Big Blue House
+  - Flinders Street Station
+  - A Really Big House
+  - Cozy Cottage
+  _initialListingCount: 3
+  _minListingDelay: 3
+  _maxListingDelay: 10
+  _minNewListings: 1
+  _maxNewListings: 2
+  _minListingTime: 6
+  _maxListingTime: 12
