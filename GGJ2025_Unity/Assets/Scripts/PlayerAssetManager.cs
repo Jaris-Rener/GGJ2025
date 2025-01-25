@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerAssetManager : Singleton<PlayerAssetManager>
 {
+    [SerializeField] private int _maxProperties = 10;
+    
     public event Action<float> OnMoneyChanged;
     public event Action<BuildingListing> OnPropertyAdded;
     public event Action<BuildingListing> OnPropertyRemoved;
@@ -19,6 +21,12 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
 
     public bool Buy(BuildingListing listing)
     {
+        if (Properties.Count >= _maxProperties)
+        {
+            Debug.Log("Too many properties owned");
+            return false;
+        }
+        
         if (money < listing.CurrentCost)
         {
             Debug.Log($"Cannot afford {listing}");

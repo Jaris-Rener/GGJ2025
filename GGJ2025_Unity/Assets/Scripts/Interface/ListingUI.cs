@@ -11,8 +11,8 @@ public class ListingUI : MonoBehaviour
     
     [SerializeField] private LocationSpriteLookup _locationIcons;
     [SerializeField] private BuildingTypeSpriteLookup _buildingIcons;
-    [SerializeField] private MarketForceSpriteLookup _marketSprites;
-    [SerializeField] private MarketForceColourLookup _marketColours;
+    [SerializeField] private IntToSpriteLookup _marketSprites;
+    [SerializeField] private IntToColourLookup _marketColours;
     
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private TextMeshProUGUI _cost;

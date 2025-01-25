@@ -59,7 +59,17 @@ public class MarketForceManager : Singleton<MarketForceManager>
             _ => throw new ArgumentOutOfRangeException(nameof(location), location, null)
         };
     }
-    
+
+    public int GetMarketDirection(Location location)
+    {
+        return GetNextMarketForce(location) - GetCurrentMarketForce(location);
+    }
+
+    private int GetNextMarketForce(Location location)
+    {
+        return 0;
+    }
+
     public float GetMultiplier(Location location)
     {
         return IntToFloatMapper.GetMultiplier(GetCurrentMarketForce(location));
