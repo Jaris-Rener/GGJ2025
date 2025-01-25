@@ -14,8 +14,6 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
     [SerializeField] private List<AudioClip> _WinGameClips;
     [SerializeField] private List<AudioClip> _LoseGameClips;
 
-    // Prefab to spawn when the game ends
-    [SerializeField]
     private GraphHandler GraphHandlerPrefab;
 
     [SerializeField]
@@ -40,6 +38,16 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
     {
         // Start the coroutine to trigger steps
         StartCoroutine(StepCoroutine());
+
+        // Find and cache the GraphHandler
+        GraphHandlerPrefab = FindObjectOfType<GraphHandler>();
+
+        if (GraphHandlerPrefab == null)
+        {
+            Debug.LogError("GraphHandler not found in the scene.");
+            return;
+        }
+        GraphHandlerPrefab.gameObject.SetActive(false);
     }
 
     private IEnumerator StepCoroutine()
@@ -54,7 +62,6 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
             {
                 TriggerEndStep();
                 endTriggered = true;
-                Debug.Log("THE END");
             }
             else
             {
@@ -63,7 +70,6 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
             }
         }
     }
-
 
     private void TriggerStep()
     {
@@ -74,41 +80,52 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
     private void TriggerEndStep()
     {
         OnEndStep?.Invoke();
-        if (PlayerAssetManager.Instance.money > PlayerAssetManager.Instance.startingMoney) 
+
+        GraphHandlerPrefab.gameObject.SetActive(true);
+        StartCoroutine(DelayedExecution());
+    }
+
+    private IEnumerator DelayedExecution()
+    {
+        // Play the appropriate audio clip
+        if (PlayerAssetManager.Instance.money > PlayerAssetManager.Instance.startingMoney)
         {
-            var winclip = _WinGameClips.GetRandom();
-            _audioSource.PlayOneShot(winclip);
+            var winClip = _WinGameClips.GetRandom();
+            _audioSource.PlayOneShot(winClip);
         }
         else
         {
-            var loseclip = _LoseGameClips.GetRandom();
-            _audioSource.PlayOneShot(loseclip);
+            var loseClip = _LoseGameClips.GetRandom();
+            _audioSource.PlayOneShot(loseClip);
         }
-        /*
-        // Create the graph
+
+        // Delay for 2 seconds (change duration as needed)
+        yield return new WaitForSeconds(0.5f);
+
+        // Activate the GraphHandlerPrefab and create the graph
         if (GraphHandlerPrefab != null)
         {
-            float moneyMin = 9999999999.0f;
-            float moneyMax = -9999999999.0f;
+            GraphHandlerPrefab.gameObject.SetActive(true);
+
+            float moneyMin = float.MaxValue;
+            float moneyMax = float.MinValue;
+
             for (int i = 0; i < PlayerAssetManager.moneyChanged.Count; i++)
             {
-                Debug.Log("CreatePoint");
                 GraphHandlerPrefab.CreatePoint(new Vector2(i, PlayerAssetManager.moneyChanged[i]));
-                if (PlayerAssetManager.moneyChanged[i] > moneyMax)
-                    moneyMax = PlayerAssetManager.moneyChanged[i];
-
-                if (PlayerAssetManager.moneyChanged[i] < moneyMin)
-                    moneyMin = PlayerAssetManager.moneyChanged[i];
+                moneyMax = Mathf.Max(moneyMax, PlayerAssetManager.moneyChanged[i]);
+                moneyMin = Mathf.Min(moneyMin, PlayerAssetManager.moneyChanged[i]);
             }
-            GraphHandlerPrefab.SetCornerValues(new Vector2(0f, 0f), new Vector2(PlayerAssetManager.moneyChanged.Count, PlayerAssetManager.Instance.money));
+
+            GraphHandlerPrefab.SetCornerValues(new Vector2(-1f, moneyMin), new Vector2(PlayerAssetManager.moneyChanged.Count + 1, moneyMax));
             GraphHandlerPrefab.UpdateGraph();
-            Debug.Log("End prefab spawned.");
+
+            Debug.Log("GraphHandlerPrefab updated after delay.");
         }
         else
         {
-            Debug.LogWarning("End prefab is not assigned.");
+            Debug.LogWarning("GraphHandlerPrefab is not assigned.");
         }
-        */
     }
 
     public void SetStepInterval(float interval)
