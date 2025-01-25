@@ -32,12 +32,23 @@ public static class Util
     public static BuildingListing GenerateRandomBuilding(float lifetime)
     {
         var building = new BuildingListing();
-        building.BaseCost = Random.Range(100, 1000);
-        building.Lifetime = lifetime;
-        building.CreatedTime = Time.time;
         var buildingTypes = Enum.GetNames(typeof(BuildingType));
         building.BuildingType = (BuildingType)Random.Range(0, buildingTypes.Length);
-        
+        building.BaseCost = GetCost(building.BuildingType);
+        building.Lifetime = lifetime;
+        building.CreatedTime = Time.time;
+
         return building;
+    }
+
+    private static float GetCost(BuildingType type)
+    {
+        return type switch
+        {
+            BuildingType.Apartment => 500,
+            BuildingType.House => 1000,
+            BuildingType.Mansion => 2000,
+            _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+        };
     }
 }

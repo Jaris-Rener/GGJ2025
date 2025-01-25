@@ -28,13 +28,14 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
             return false;
         }
         
-        if (money < listing.CurrentCost)
-        {
-            Debug.Log($"Cannot afford {listing}");
-            return false;
-        }
+        // if (money < listing.CurrentCost)
+        // {
+        //     Debug.Log($"Cannot afford {listing}");
+        //     return false;
+        // }
 
         listing.Lifetime = -1;
+        listing.BuyCost = listing.CurrentCost;
         money -= listing.CurrentCost;
         OnMoneyChanged?.Invoke(money);
         Properties.Add(listing);

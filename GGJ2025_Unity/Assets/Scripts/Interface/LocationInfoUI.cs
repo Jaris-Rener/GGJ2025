@@ -30,8 +30,7 @@ public class LocationInfoUI : MonoBehaviour
 
     private void OnMarketUpdated()
     {
-        // TODO: Change to upcoming force
-        var force = MarketForceManager.Instance.GetCurrentMarketForce(Location);
+        var force = MarketForceManager.Instance.GetMarketDirection(Location);
         _projectionImage.sprite = _marketSprites.Get(force);
         _projectionImage.color = _marketColours.Get(force);
 

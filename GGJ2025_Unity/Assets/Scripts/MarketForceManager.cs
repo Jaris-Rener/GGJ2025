@@ -75,7 +75,6 @@ public class MarketForceManager : Singleton<MarketForceManager>
         priceLevel = Mathf.Clamp(priceLevel + cardValue, minPriceLevel, maxPriceLevel);
     }
 
-<<<<<<< Updated upstream
     public int GetCurrentMarketForce(Location location)
     {
         return location switch
@@ -89,20 +88,20 @@ public class MarketForceManager : Singleton<MarketForceManager>
 
     public int GetMarketDirection(Location location)
     {
-        return GetNextMarketForce(location) - GetCurrentMarketForce(location);
-    }
-
-    private int GetNextMarketForce(Location location)
-    {
-        return 0;
+        return location switch
+        {
+            Location.Beach => savedBeachCard,
+            Location.City => savedCityCard,
+            Location.Suburbs => savedSuburbCard,
+            _ => throw new ArgumentOutOfRangeException(nameof(location), location, null)
+        };
     }
 
     public float GetMultiplier(Location location)
     {
         return IntToFloatMapper.GetMultiplier(GetCurrentMarketForce(location));
     }
-}
-=======
+
     private void OnCardDrawn(int cardValue, DeckManager deck)
     {
         // Callback function for when a card is drawn (extendable for custom behavior)
@@ -206,4 +205,3 @@ public class MarketForceManager : Singleton<MarketForceManager>
         }
     }
 }
->>>>>>> Stashed changes

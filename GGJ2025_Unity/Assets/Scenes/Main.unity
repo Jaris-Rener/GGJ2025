@@ -1626,6 +1626,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5947050180620114453, guid: b3125788766c80249a4bba0eca9bf40a, type: 3}
+      propertyPath: m_fontSize
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 5947050180620114453, guid: b3125788766c80249a4bba0eca9bf40a, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 5947050180620114453, guid: b3125788766c80249a4bba0eca9bf40a, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
     - target: {fileID: 5977626780096279421, guid: b3125788766c80249a4bba0eca9bf40a, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -3131,7 +3143,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6777874851287740111, guid: 16ec9d5f5583aad4b83e6d3ecc934d39, type: 3}
       propertyPath: money
-      value: 1000
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 2238485520321346945, guid: 16ec9d5f5583aad4b83e6d3ecc934d39, type: 3}
       propertyPath: m_Name
@@ -3878,6 +3890,18 @@ PrefabInstance:
     - target: {fileID: 4079458625101040776, guid: a7781ac39819a6c45b468d287a2395f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7751527715110091365, guid: a7781ac39819a6c45b468d287a2395f0, type: 3}
+      propertyPath: _maxNewListings
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7751527715110091365, guid: a7781ac39819a6c45b468d287a2395f0, type: 3}
+      propertyPath: _maxListingDelay
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7751527715110091365, guid: a7781ac39819a6c45b468d287a2395f0, type: 3}
+      propertyPath: _minListingDelay
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7751527715110091365, guid: a7781ac39819a6c45b468d287a2395f0, type: 3}
       propertyPath: _listingNamePool.Array.size
