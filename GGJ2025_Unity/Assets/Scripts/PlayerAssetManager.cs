@@ -12,6 +12,7 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
     
     public float money = 1000.0f;
     public float taxRate = 0.3f;
+    public float minimumTaxAmount = 50.0f;
     public List<BuildingListing> Properties = new();
 
     private void Start()
@@ -74,15 +75,25 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
 
     public float TaxPlayer()
     {
+        float taxedAmount;
+
         if (money >= 0)
         {
             // Decrease positive money by 30%
-            return money * (1 - taxRate);
+            taxedAmount = money * (1 - taxRate);
         }
         else
         {
             // Increase debt (negative money) by 30%
-            return money * (1 + taxRate);
+            taxedAmount = money * (1 + taxRate);
         }
+
+        // Ensure taxed amount is at least the minimum tax amount
+        if (money - taxedAmount < minimumTaxAmount)
+        {
+            taxedAmount = money - minimumTaxAmount;
+        }
+
+        return taxedAmount;
     }
 }
