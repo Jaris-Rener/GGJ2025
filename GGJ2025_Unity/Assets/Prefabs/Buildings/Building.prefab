@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2585093083147518809}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -156.54152, y: 188.29686, z: -6.4780006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48,9 +48,8 @@ MonoBehaviour:
   _location: 0
   _name: 
   mansionOptions:
-  - {fileID: 1269278804506738669, guid: 43b66507de1b0e140a47bea7d0a1aab1, type: 3}
-  - {fileID: 919132149155446097, guid: e96ccf270632f394d94583004560f7e3, type: 3}
+  - {fileID: 3635089638603174509, guid: 205a37df13e74dd4dae1f4b3055fd783, type: 3}
   apartmentOptions:
-  - {fileID: 1269278804506738669, guid: adf3d54bae5bce842ba8f3f4b9c20750, type: 3}
+  - {fileID: 3635089638603174509, guid: a129826b7239e6649a12d5f78ecfaa08, type: 3}
   houseOptions:
-  - {fileID: 1269278804506738669, guid: 1c124a2cf5e22574ca13f86f8bcda90b, type: 3}
+  - {fileID: 3635089638603174509, guid: 83330dedf358fef4ea1a8494cfbc03fd, type: 3}
