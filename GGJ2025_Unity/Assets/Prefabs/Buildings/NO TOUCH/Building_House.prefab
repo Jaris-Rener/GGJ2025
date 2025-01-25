@@ -119,6 +119,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3242876274835343082, guid: dcae07402ccc8774a8100763344ec679, type: 3}
+      propertyPath: houseOptions.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242876274835343082, guid: dcae07402ccc8774a8100763344ec679, type: 3}
       propertyPath: mansionOptions.Array.size
       value: 0
       objectReference: {fileID: 0}
