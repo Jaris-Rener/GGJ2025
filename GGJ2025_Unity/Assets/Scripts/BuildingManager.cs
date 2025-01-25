@@ -41,6 +41,12 @@ public class BuildingManager : Singleton<BuildingManager>
         _listingPool = new Stack<BuildingListing>(listings);
     }
 
+    private void Start()
+    {
+        CreateInitialListings();
+        StartCoroutine(GenerateListings());
+    }
+
     public BuildingListing GetListing()
     {
         if (_listingPool.Count <= 0)
@@ -55,13 +61,8 @@ public class BuildingManager : Singleton<BuildingManager>
         }
         
         var listing = _listingPool.Pop();
+        listing.CreatedTime = Time.time;
         return listing;
-    }
-
-    private void Start()
-    {
-        CreateInitialListings();
-        StartCoroutine(GenerateListings());
     }
 
     private void Update()
@@ -87,10 +88,7 @@ public class BuildingManager : Singleton<BuildingManager>
 
             var newListings = Random.Range(_minNewListings, _maxNewListings);
             for (var i = 0; i < newListings; i++)
-            {
-                var lifetime = Random.Range(_minListingTime, _maxListingTime);
                 AddListing(GetListing());
-            }
         }
     }
 
@@ -98,13 +96,9 @@ public class BuildingManager : Singleton<BuildingManager>
     {
         for (int i = 0; i < _initialListingCount; i++)
         {
-            var lifetime = Random.Range(_minListingTime, _maxListingTime);
             AddListing(GetListing());
         }
     }
-    
-    public IEnumerable<BuildingListing> GetListings(Location location)
-        => _listings.Where(x => x.Location == location);
 
     public void AddListing(BuildingListing listing)
     {

@@ -18,27 +18,9 @@ public static class Util
         list.Clear();
     }
 
-    public static Location GetRandomLocation()
-    {
-        var locations = Enum.GetValues(typeof(Location));
-        return (Location)locations.GetValue(Random.Range(0, locations.Length));
-    }
-
     public static T GetRandom<T>(this List<T> list)
     {
         return list[Random.Range(0, list.Count)];
-    }
-
-    public static BuildingListing GenerateRandomBuilding(float lifetime)
-    {
-        var building = new BuildingListing();
-        var buildingTypes = Enum.GetNames(typeof(BuildingType));
-        building.BuildingType = (BuildingType)Random.Range(0, buildingTypes.Length);
-        building.BaseCost = GetCost(building.BuildingType);
-        building.Lifetime = lifetime;
-        building.CreatedTime = Time.time;
-
-        return building;
     }
 
     private static float GetCost(BuildingType type)
