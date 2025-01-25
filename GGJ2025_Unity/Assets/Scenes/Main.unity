@@ -2745,6 +2745,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraTarget
       objectReference: {fileID: 0}
+    - target: {fileID: 7163918884391101081, guid: e22d32fc9caa74c4da3cacf62ae1e6ec, type: 3}
+      propertyPath: m_Antialiasing
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2977,7 +2981,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7751527715110091365, guid: a7781ac39819a6c45b468d287a2395f0, type: 3}
       propertyPath: _speedMultiplier.m_Curve.Array.data[2].time
-      value: 180
+      value: 180.52554
       objectReference: {fileID: 0}
     - target: {fileID: 7751527715110091365, guid: a7781ac39819a6c45b468d287a2395f0, type: 3}
       propertyPath: _speedMultiplier.m_Curve.Array.data[1].value
@@ -2985,7 +2989,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7751527715110091365, guid: a7781ac39819a6c45b468d287a2395f0, type: 3}
       propertyPath: _speedMultiplier.m_Curve.Array.data[2].value
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7751527715110091365, guid: a7781ac39819a6c45b468d287a2395f0, type: 3}
       propertyPath: _speedMultiplier.m_Curve.Array.data[0].inSlope
@@ -2997,7 +3001,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7751527715110091365, guid: a7781ac39819a6c45b468d287a2395f0, type: 3}
       propertyPath: _speedMultiplier.m_Curve.Array.data[2].inSlope
-      value: -0.0018410557
+      value: -0.0009341797
       objectReference: {fileID: 0}
     - target: {fileID: 7751527715110091365, guid: a7781ac39819a6c45b468d287a2395f0, type: 3}
       propertyPath: _speedMultiplier.m_Curve.Array.data[0].outSlope
@@ -3013,7 +3017,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7751527715110091365, guid: a7781ac39819a6c45b468d287a2395f0, type: 3}
       propertyPath: _speedMultiplier.m_Curve.Array.data[2].outSlope
-      value: -0.0018410557
+      value: -0.0009341797
       objectReference: {fileID: 0}
     - target: {fileID: 7751527715110091365, guid: a7781ac39819a6c45b468d287a2395f0, type: 3}
       propertyPath: _speedMultiplier.m_Curve.Array.data[1].outWeight
