@@ -29,9 +29,6 @@ public class MarketForceManager : Singleton<MarketForceManager>
     public DeckDrawSettings suburbNumberSettings = new DeckDrawSettings();
     public DeckDrawSettings cityNumberSettings = new DeckDrawSettings();
 
-    public float[] intToFloatMap = { 0.5f, 0.75f, 1.0f, 1.5f, 2.0f };
-    
-
     [Serializable]
     public struct DeckDrawSettings
     {
@@ -224,14 +221,9 @@ public class MarketForceManager : Singleton<MarketForceManager>
         };
     }
 
-    public float GetMultiplier(int key)
+    public float GetMultiplier(Location location)
     {
-        int index = key + 2; // Map key (-2 to 2) to array index (0 to 4)
-        if (index >= 0 && index < intToFloatMap.Length)
-        {
-            return intToFloatMap[index];
-        }
-        throw new IndexOutOfRangeException($"Key {key} is out of range.");
+        return IntToFloatMapper.GetMultiplier(GetCurrentMarketForce(location));
     }
 
     private void OnCardDrawn(int cardValue, DeckManager deck)
