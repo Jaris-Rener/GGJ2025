@@ -6,8 +6,11 @@ public class PlayerListingsUI : MonoBehaviour
 {
     [SerializeField] private Transform _listingsRoot;
     [SerializeField] private ListingNotificationUI _listingPrefab;
+    [SerializeField] private FullListingUI _fullListingUI;
 
     private readonly List<ListingUI> _instances = new();
+    
+    public BuildingListing Selected { get; set; }
     
     private void Start()
     {
@@ -25,11 +28,30 @@ public class PlayerListingsUI : MonoBehaviour
     {
         var instance = Instantiate(_listingPrefab, _listingsRoot);
         instance.Setup(listing);
+        instance.OnSelected += OnSelected;
+        instance.Show();
         _instances.Add(instance);
     }
 
-    private void RemoveProperty(BuildingListing obj)
+    private void OnSelected(BuildingListing listing)
     {
-        throw new NotImplementedException();
+        _fullListingUI.Setup(listing);
+        Selected = listing;
+    }
+
+    private void RemoveProperty(BuildingListing listing)
+    {
+        var instance = _instances.Find(x => x.Listing == listing);
+        if (instance == null)
+            return;
+        
+        Destroy(instance.gameObject);
+        _instances.Remove(instance);
+        
+        if (Selected == listing)
+        {
+            Selected = null;
+            _fullListingUI.Hide();
+        }
     }
 }

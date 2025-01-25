@@ -38,9 +38,6 @@ public static class Util
         var buildingTypes = Enum.GetNames(typeof(BuildingType));
         building.BuildingType = (BuildingType)Random.Range(0, buildingTypes.Length);
         
-        var randomNumber = Random.Range(0, 100);
-        building.Name = $"[PLACEHOLDER NAME {randomNumber}]";
-        
         return building;
     }
 }

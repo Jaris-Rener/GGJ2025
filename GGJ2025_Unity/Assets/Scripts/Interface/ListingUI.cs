@@ -1,11 +1,10 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ListingUI : MonoBehaviour
 {
-    protected BuildingListing Listing { get; private set; }
+    public BuildingListing Listing { get; private set; }
 
     [SerializeField] private Image _timerImage;
     
@@ -16,9 +15,15 @@ public class ListingUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _cost;
     [SerializeField] private Image _locationIcon;
     [SerializeField] private Image _buildingTypeIcon;
-
+    
     public void Setup(BuildingListing listing)
     {
+        if (Listing == listing)
+        {
+            Toggle();
+            return;
+        }
+
         Listing = listing;
         
         _name.text = listing.Name;
@@ -26,6 +31,28 @@ public class ListingUI : MonoBehaviour
 
         _locationIcon.sprite = _locationIcons.Get(listing.Location);
         _buildingTypeIcon.sprite = _buildingIcons.Get(listing.BuildingType);
+
+        Show();
+    }
+
+    public void Toggle()
+    {
+        gameObject.SetActive(!gameObject.activeSelf);
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void OnListingRemoved()
+    {
+        Hide();
     }
 
     private void Update()

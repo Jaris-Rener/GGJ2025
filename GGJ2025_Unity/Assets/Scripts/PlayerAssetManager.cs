@@ -35,9 +35,11 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
 
     public bool Sell(BuildingListing listing)
     {
+        if (!Properties.Remove(listing))
+            return false;
+        
         money += listing.Cost;
         OnMoneyChanged?.Invoke(money);
-        Properties.Remove(listing);
         OnPropertyRemoved?.Invoke(listing);
         return true;
     }

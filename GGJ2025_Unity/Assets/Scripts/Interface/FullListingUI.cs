@@ -5,15 +5,31 @@ using UnityEngine.UI;
 public class FullListingUI : ListingUI
 {
     [SerializeField] private Button _buyButton;
+    [SerializeField] private Button _sellButton;
+
+    private void Awake() => Hide();
 
     private void Start()
     {
-        _buyButton.onClick.AddListener(BuyListing);
+        if (_buyButton != null)
+            _buyButton.onClick.AddListener(BuyListing);
+        
+        if (_sellButton != null) 
+            _sellButton.onClick.AddListener(SellListing);
     }
 
     private void OnDestroy()
     {
-        _buyButton.onClick.RemoveListener(BuyListing);
+        if (_buyButton != null) 
+            _buyButton.onClick.RemoveListener(BuyListing);
+        
+        if (_sellButton != null) 
+            _sellButton.onClick.RemoveListener(SellListing);
+    }
+
+    private void SellListing()
+    {
+        PlayerAssetManager.Instance.Sell(Listing);
     }
 
     private void BuyListing()
