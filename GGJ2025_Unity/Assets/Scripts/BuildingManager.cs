@@ -22,6 +22,31 @@ public class BuildingManager : Singleton<BuildingManager>
     public IEnumerable<BuildingListing> AllListings => _listings;
     private readonly List<BuildingListing> _listings = new();
 
+    [SerializeField] private List<Building> _buildings = new();
+    private Stack<BuildingListing> _listingPool;
+    
+    public override void Awake()
+    {
+        base.Awake();
+
+        var listings = new List<BuildingListing>();
+        foreach (var building in _buildings)
+        {
+            var lifetime = Random.Range(_minListingTime, _maxListingTime);
+            var listing = Util.GenerateListingFromBuilding(building, lifetime);
+            listings.Add(listing);
+        }
+
+        listings.Shuffle();
+        _listingPool = new Stack<BuildingListing>(listings);
+    }
+
+    public BuildingListing GetListing()
+    {
+        var listing = _listingPool.Pop();
+        return listing;
+    }
+
     private void Start()
     {
         CreateInitialListings();
@@ -52,7 +77,7 @@ public class BuildingManager : Singleton<BuildingManager>
             for (var i = 0; i < newListings; i++)
             {
                 var lifetime = Random.Range(_minListingTime, _maxListingTime);
-                AddListing(Util.GenerateRandomBuilding(lifetime), Util.GetRandomLocation());
+                AddListing(GetListing());
             }
         }
     }
@@ -62,17 +87,18 @@ public class BuildingManager : Singleton<BuildingManager>
         for (int i = 0; i < _initialListingCount; i++)
         {
             var lifetime = Random.Range(_minListingTime, _maxListingTime);
-            AddListing(Util.GenerateRandomBuilding(lifetime), Util.GetRandomLocation());
+            AddListing(GetListing());
         }
     }
     
     public IEnumerable<BuildingListing> GetListings(Location location)
         => _listings.Where(x => x.Location == location);
 
-    public void AddListing(BuildingListing listing, Location location)
+    public void AddListing(BuildingListing listing)
     {
         listing.Name = _listingNamePool.GetRandom();
-        listing.Location = location;
+        listing.CreatedTime = Time.time;
+        
         _listings.Add(listing);
         OnListingCreated?.Invoke(listing);
         Debug.Log($"New listing {listing}");

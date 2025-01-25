@@ -95,7 +95,7 @@ public class ListingUI : MonoBehaviour
             Show(playAudio);
     }
 
-    public void Show(bool playAudio = true)
+    public virtual void Show(bool playAudio = true)
     {
         Active = true;
         _canvasGroup.alpha = 1;
@@ -103,7 +103,7 @@ public class ListingUI : MonoBehaviour
             _audioSource.PlayOneShot(_showClip);
     }
 
-    public void Hide(bool playAudio = true)
+    public virtual void Hide(bool playAudio = true)
     {
         Active = false;
         _canvasGroup.alpha = 0;
