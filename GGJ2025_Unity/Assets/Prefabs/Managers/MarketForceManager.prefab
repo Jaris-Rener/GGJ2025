@@ -44,3 +44,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff0fe95b755abf54c92fb2503da5f1ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beachPriceLevel: 0
+  suburbPriceLevel: 0
+  cityPriceLevel: 0
+  maxPriceLevel: 2
+  minPriceLevel: -2
+  removeDrawnCardsFromDecks: 0
+  savedBeachCard: 0
+  savedSuburbCard: 0
+  savedCityCard: 0
+  beachNumberSettings:
+    PlusTwo:
+      NumbersToAdd: 01000000fffffffffeffffff
+      NumbersToRemove: 
+    PlusOne:
+      NumbersToAdd: 0100000002000000
+      NumbersToRemove: 
+    Zero:
+      NumbersToAdd: 0100000002000000fffffffffeffffff
+      NumbersToRemove: 
+    MinusOne:
+      NumbersToAdd: fffffffffeffffff
+      NumbersToRemove: 
+    MinusTwo:
+      NumbersToAdd: ffffffff0100000002000000
+      NumbersToRemove: 
+  suburbNumberSettings:
+    PlusTwo:
+      NumbersToAdd: 01000000fffffffffeffffff
+      NumbersToRemove: 
+    PlusOne:
+      NumbersToAdd: 0100000002000000
+      NumbersToRemove: 
+    Zero:
+      NumbersToAdd: 0100000002000000fffffffffeffffff
+      NumbersToRemove: 
+    MinusOne:
+      NumbersToAdd: fffffffffeffffff
+      NumbersToRemove: 
+    MinusTwo:
+      NumbersToAdd: ffffffff0100000002000000
+      NumbersToRemove: 
+  cityNumberSettings:
+    PlusTwo:
+      NumbersToAdd: 01000000fffffffffeffffff
+      NumbersToRemove: 
+    PlusOne:
+      NumbersToAdd: 0100000002000000
+      NumbersToRemove: 
+    Zero:
+      NumbersToAdd: 0100000002000000fffffffffeffffff
+      NumbersToRemove: 
+    MinusOne:
+      NumbersToAdd: fffffffffeffffff
+      NumbersToRemove: 
+    MinusTwo:
+      NumbersToAdd: ffffffff0100000002000000
+      NumbersToRemove: 
