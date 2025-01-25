@@ -7,6 +7,7 @@ using UnityEngine;
 public class GlobalStepManager : Singleton<GlobalStepManager>
 {
     // The event that other classes can subscribe to
+    public static event Action OnBeginStep;
     public static event Action OnStep;
     public static event Action OnEndStep;
     public AudioSource _audioSource;
@@ -26,18 +27,21 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
     [SerializeField]
     private int stepCount = 15;
 
+    [SerializeField]
+    private float startDelayTime = 1f;
+
     private int currentStepCount = 0;
 
-    static public bool endTriggered = false;
-    
+    public static bool gameStarted = false;
+    public static bool endTriggered = false;
+
     public float LastStepTime { get; private set; }
     public float NextStepTime { get; private set; }
     public float StartTime { get; private set; }
 
     private void Start()
     {
-        // Start the coroutine to trigger steps
-        StartCoroutine(StepCoroutine());
+        StartCoroutine(DelayedStart());
 
         // Find and cache the GraphHandler
         GraphHandlerPrefab = FindObjectOfType<GraphHandler>();
@@ -50,7 +54,7 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
         GraphHandlerPrefab.gameObject.SetActive(false);
     }
 
-    private IEnumerator StepCoroutine()
+    private IEnumerator StepMarket()
     {
         StartTime = Time.time;
         while (endTriggered == false)
@@ -71,6 +75,14 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
         }
     }
 
+    private void TriggerBeginStep()
+    {
+        Debug.Log("Begin Market");
+        gameStarted = true;
+        OnBeginStep?.Invoke();
+        StartCoroutine(StepMarket());
+    }
+
     private void TriggerStep()
     {
         OnStep?.Invoke();
@@ -83,6 +95,12 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
 
         GraphHandlerPrefab.gameObject.SetActive(true);
         StartCoroutine(DelayedExecution());
+    }
+
+    private IEnumerator DelayedStart()
+    {
+        yield return new WaitForSeconds(startDelayTime);
+        TriggerBeginStep();
     }
 
     private IEnumerator DelayedExecution()
