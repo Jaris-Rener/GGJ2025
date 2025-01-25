@@ -1666,14 +1666,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GRP_SellListing
       objectReference: {fileID: 0}
-    - target: {fileID: 5338671766982958968, guid: a445de92bad014d43bb257226032e218, type: 3}
-      propertyPath: _buyButton
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5338671766982958968, guid: a445de92bad014d43bb257226032e218, type: 3}
-      propertyPath: _sellButton
-      value: 
-      objectReference: {fileID: 3639376192593105849}
     - target: {fileID: 5578952719653935679, guid: a445de92bad014d43bb257226032e218, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -1754,14 +1746,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6700939410044810584, guid: a445de92bad014d43bb257226032e218, type: 3}
-      propertyPath: m_Name
-      value: BTN_Sell
-      objectReference: {fileID: 0}
-    - target: {fileID: 8809963021405776520, guid: a445de92bad014d43bb257226032e218, type: 3}
-      propertyPath: m_text
-      value: SELL
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1783,17 +1767,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5578952719653935679, guid: a445de92bad014d43bb257226032e218, type: 3}
   m_PrefabInstance: {fileID: 5861737783390710163}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3639376192593105849 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7194705087346489898, guid: a445de92bad014d43bb257226032e218, type: 3}
-  m_PrefabInstance: {fileID: 5861737783390710163}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7542428766538606428
 PrefabInstance:
   m_ObjectHideFlags: 0
