@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: be45cd79949dadc4c96f92e982e95477
+timeCreated: 1509363532
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 103552
+  packageName: Sofa
+  packageVersion: 1.0
+  assetPath: Assets/Sofa FREE/Prefab/LOD_2/Chaise_L2_t1_F_1.prefab
+  uploadId: 209049

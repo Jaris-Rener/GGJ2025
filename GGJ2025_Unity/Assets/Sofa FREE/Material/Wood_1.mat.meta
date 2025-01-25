@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 45bc6d8d34889494093cdfabc5cace9a
+timeCreated: 1509358222
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 103552
+  packageName: Sofa
+  packageVersion: 1.0
+  assetPath: Assets/Sofa FREE/Material/Wood_1.mat
+  uploadId: 209049

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: bc13f6180596f384f94b711a091e659d
+timeCreated: 1509354239
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: -1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 103552
+  packageName: Sofa
+  packageVersion: 1.0
+  assetPath: Assets/Sofa FREE/Material/Fabric_11.mat
+  uploadId: 209049
