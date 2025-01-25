@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GlobalStepManager : Singleton<GlobalStepManager>
@@ -7,6 +8,10 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
     // The event that other classes can subscribe to
     public static event Action OnStep;
     public static event Action OnEndStep;
+    public AudioSource _audioSource;
+    public AudioClip _TimerClip;
+    [SerializeField] private List<AudioClip> _WinGameClips;
+    [SerializeField] private List<AudioClip> _LoseGameClips;
 
     // Interval in seconds between each step
     [SerializeField]
@@ -55,11 +60,22 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
     private void TriggerStep()
     {
         OnStep?.Invoke();
+        _audioSource.PlayOneShot(_TimerClip);
     }
 
     private void TriggerEndStep()
     {
         OnEndStep?.Invoke();
+        if (PlayerAssetManager.Instance.money > PlayerAssetManager.Instance.startingMoney) 
+        {
+            var winclip = _WinGameClips.GetRandom();
+            _audioSource.PlayOneShot(winclip);
+        }
+        else
+        {
+            var loseclip = _LoseGameClips.GetRandom();
+            _audioSource.PlayOneShot(loseclip);
+        }
     }
 
     public void SetStepInterval(float interval)

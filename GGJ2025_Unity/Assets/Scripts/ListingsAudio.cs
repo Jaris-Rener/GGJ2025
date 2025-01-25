@@ -25,6 +25,7 @@ public class ListingsAudio : MonoBehaviour
         if (Time.time - _lastAudioTime < _minDelay)
             return;
         
+        //maybe want to safeguard against consecutive clips? unsure how to - Chrispy
         _lastAudioTime = Time.time;
         var clip = _clips.GetRandom();
         _audioSource.PlayOneShot(clip);

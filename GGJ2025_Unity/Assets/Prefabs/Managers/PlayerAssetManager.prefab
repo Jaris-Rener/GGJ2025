@@ -46,9 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603142f6aca4b19438aee78662a6cce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxProperties: 10
-  money: 5000
-  taxRate: 0.2
+  _maxProperties: 9
+  taxRate: 0.1
   minimumTaxAmount: 50
 --- !u!82 &5572132689948391927
 AudioSource:
@@ -160,4 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 5572132689948391927}
-  _moneyClip: {fileID: 8300000, guid: 0328b6e8211a0e2498619de5175dc786, type: 3}
+  _moneyclips:
+  - {fileID: 8300000, guid: 0328b6e8211a0e2498619de5175dc786, type: 3}
+  - {fileID: 8300000, guid: 8f6f398592c857b4a8e19e5ea03141de, type: 3}
+  - {fileID: 8300000, guid: 658dc8f615eca8c43ab2b9687aa3446a, type: 3}
