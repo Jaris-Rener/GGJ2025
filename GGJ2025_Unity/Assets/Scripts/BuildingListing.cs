@@ -2,7 +2,7 @@ using System;
 
 public class BuildingListing
 {
-    public float CurrentCost => BaseCost * MarketForceManager.Instance.GetMultiplier((int)Location);
+    public float CurrentCost => BaseCost * MarketForceManager.Instance.GetMultiplier(Location);
     public Building Building { get; set; }
 
     public Location Location;
