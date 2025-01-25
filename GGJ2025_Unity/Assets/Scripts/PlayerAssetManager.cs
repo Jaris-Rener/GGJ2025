@@ -9,15 +9,34 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
     public event Action<float> OnMoneyChanged;
     public event Action<BuildingListing> OnPropertyAdded;
     public event Action<BuildingListing> OnPropertyRemoved;
-    
-    public float money = 1000.0f;
+
+    public float startingMoney = 5000.0f;
+    public float money = 5000.0f;
     public float taxRate = 0.3f;
     public float minimumTaxAmount = 50.0f;
     public List<BuildingListing> Properties = new();
 
+    public static int propertiesBought = 0;
+    public static int propertiesSold = 0;
+
+    public static List<float> moneyChanged = new();
+    private float currentMoney = 0.0f;
+
+
+
     private void Start()
     {
         OnMoneyChanged?.Invoke(money);
+    }
+
+    private void Update()
+    {
+        if (currentMoney != money) 
+        {
+            Debug.Log("Money Changed");
+            currentMoney = money;
+            moneyChanged.Add(money);
+        }
     }
 
     public bool Buy(BuildingListing listing)

@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,14 +38,11 @@ public class LocationInfoUI : MonoBehaviour
             MarketForceManager.Instance.maxPriceLevel,
             curForce);
 
-        _marketStrength.color = _marketColours.Get(curForce);
-        _marketStrength.fillAmount = Mathf.Max(0.05f, marketStrength);
+        _marketStrength.DOColor(_marketColours.Get(curForce), 0.75f);
+        _marketStrength.DOFillAmount(Mathf.Max(0.05f, marketStrength), 0.75f);
         
         var force = MarketForceManager.Instance.GetMarketDirection(Location);
         _projectionImage.sprite = _marketSprites.Get(force);
         _projectionImage.color = _marketColours.Get(force);
-
-        var value = 0;
-        _valueTxt.text = "$";
     }
 }

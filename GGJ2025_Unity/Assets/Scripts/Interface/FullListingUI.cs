@@ -49,12 +49,17 @@ public class FullListingUI : ListingUI
     private void SellListing()
     {
         PlayerAssetManager.Instance.Sell(Listing);
+        PlayerAssetManager.propertiesSold++;
     }
 
     private void BuyListing()
     {
         var success = PlayerAssetManager.Instance.Buy(Listing);
         if (success)
+        {
             BuildingManager.Instance.RemoveListing(Listing);
+            PlayerAssetManager.propertiesBought++;
+        }
+       
     }
 }

@@ -1,5 +1,7 @@
+using EasyRoads3Dv3;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GlobalStepManager : Singleton<GlobalStepManager>
@@ -7,6 +9,15 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
     // The event that other classes can subscribe to
     public static event Action OnStep;
     public static event Action OnEndStep;
+    public AudioSource _audioSource;
+    public AudioClip _TimerClip;
+    [SerializeField] private List<AudioClip> _WinGameClips;
+    [SerializeField] private List<AudioClip> _LoseGameClips;
+
+    private GraphHandler GraphHandlerPrefab;
+
+    [SerializeField]
+    private Vector3 spawnPosition = Vector3.zero;
 
     // Interval in seconds between each step
     [SerializeField]
@@ -17,7 +28,7 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
 
     private int currentStepCount = 0;
 
-    bool endTriggered = false;
+    static public bool endTriggered = false;
     
     public float LastStepTime { get; private set; }
     public float NextStepTime { get; private set; }
@@ -27,6 +38,16 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
     {
         // Start the coroutine to trigger steps
         StartCoroutine(StepCoroutine());
+
+        // Find and cache the GraphHandler
+        GraphHandlerPrefab = FindObjectOfType<GraphHandler>();
+
+        if (GraphHandlerPrefab == null)
+        {
+            Debug.LogError("GraphHandler not found in the scene.");
+            return;
+        }
+        GraphHandlerPrefab.gameObject.SetActive(false);
     }
 
     private IEnumerator StepCoroutine()
@@ -41,7 +62,6 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
             {
                 TriggerEndStep();
                 endTriggered = true;
-                Debug.Log("THE END");
             }
             else
             {
@@ -51,15 +71,51 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
         }
     }
 
-
     private void TriggerStep()
     {
         OnStep?.Invoke();
+        _audioSource.PlayOneShot(_TimerClip);
     }
 
     private void TriggerEndStep()
     {
         OnEndStep?.Invoke();
+        if (PlayerAssetManager.Instance.money > PlayerAssetManager.Instance.startingMoney) 
+        {
+            var winclip = _WinGameClips.GetRandom();
+            _audioSource.PlayOneShot(winclip);
+        }
+        else
+        {
+            var loseclip = _LoseGameClips.GetRandom();
+            _audioSource.PlayOneShot(loseclip);
+        }
+
+        GraphHandlerPrefab.gameObject.SetActive(true);
+
+        // Create the graph
+        if (GraphHandlerPrefab != null)
+        {
+            float moneyMin = 9999999999.0f;
+            float moneyMax = -9999999999.0f;
+            for (int i = 0; i < PlayerAssetManager.moneyChanged.Count; i++)
+            {
+                Debug.Log("CreatePoint");
+                GraphHandlerPrefab.CreatePoint(new Vector2(i, PlayerAssetManager.moneyChanged[i]));
+                if (PlayerAssetManager.moneyChanged[i] > moneyMax)
+                    moneyMax = PlayerAssetManager.moneyChanged[i];
+
+                if (PlayerAssetManager.moneyChanged[i] < moneyMin)
+                    moneyMin = PlayerAssetManager.moneyChanged[i];
+            }
+            GraphHandlerPrefab.SetCornerValues(new Vector2(0f, moneyMin), new Vector2(PlayerAssetManager.moneyChanged.Count, moneyMax));
+            GraphHandlerPrefab.UpdateGraph();
+            Debug.Log("End prefab spawned.");
+        }
+        else
+        {
+            Debug.LogWarning("End prefab is not assigned.");
+        }
     }
 
     public void SetStepInterval(float interval)
