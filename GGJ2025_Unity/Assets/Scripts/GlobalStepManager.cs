@@ -32,8 +32,8 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
 
     public int currentStepCount = 0;
 
-    public static bool gameStarted = false;
-    public static bool endTriggered = false;
+    public bool gameStarted = false;
+    public bool endTriggered = false;
 
     public float LastStepTime { get; private set; }
     public float NextStepTime { get; private set; }
