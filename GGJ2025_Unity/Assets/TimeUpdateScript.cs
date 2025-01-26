@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class TimeUpdateScript : MonoBehaviour
 {
@@ -7,7 +8,10 @@ public class TimeUpdateScript : MonoBehaviour
 
     private float timeRemaining;
 
-    public float timeRemainingFranticAudioTrigger;
+    public float timeRemainingFranticAudioTrigger = 30f;
+
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _franticAudio;
 
     bool flipFlop = false;
 
@@ -18,7 +22,7 @@ public class TimeUpdateScript : MonoBehaviour
         if (GlobalStepManager.Instance != null)
         {
             timeRemaining = GlobalStepManager.Instance.stepCount * GlobalStepManager.Instance.stepInterval;
-            timeRemaining = +GlobalStepManager.Instance.startDelayTime;
+            timeRemaining += GlobalStepManager.Instance.startDelayTime + GlobalStepManager.Instance.stepInterval + 1f;
         }
         else
         {
@@ -34,9 +38,9 @@ public class TimeUpdateScript : MonoBehaviour
             if (!flipFlop && timeRemaining < timeRemainingFranticAudioTrigger) 
             {
                 flipFlop = true;
-
+                _audioSource.PlayOneShot(_franticAudio);
             }
-            // Decrement the timer
+
             timeRemaining -= Time.deltaTime;
 
             // Prevent it from going negative
@@ -49,7 +53,6 @@ public class TimeUpdateScript : MonoBehaviour
             int minutes = Mathf.FloorToInt(timeRemaining / 60f);
             int seconds = Mathf.FloorToInt(timeRemaining % 60f);
 
-            // Update the text if the reference exists
             if (textRef != null)
             {
                 TextMeshProUGUI textMeshProRef = textRef.GetComponent<TextMeshProUGUI>();

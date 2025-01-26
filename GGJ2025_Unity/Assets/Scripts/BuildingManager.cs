@@ -12,6 +12,7 @@ public class BuildingManager : Singleton<BuildingManager>
 
     [SerializeField] private AnimationCurve _speedMultiplier;
     [SerializeField] private int _minListings = 2;
+    [SerializeField] private int _maxListings = 12;
     [SerializeField] private int _initialListingCount = 3;
     [SerializeField] private float _minListingDelay = 3;
     [SerializeField] private float _maxListingDelay = 10;
@@ -43,10 +44,14 @@ public class BuildingManager : Singleton<BuildingManager>
 
     private void Start()
     {
-        GlobalStepManager.OnBeginStep += CreateInitialListings;
+        GlobalStepManager.Instance.OnBeginStep += CreateInitialListings;
     }
 
-   
+    private void OnDestroy()
+    {
+        GlobalStepManager.Instance.OnBeginStep -= CreateInitialListings;
+    }
+
     public BuildingListing GetListing()
     {
         if (_listingPool.Count <= 0)
@@ -89,7 +94,12 @@ public class BuildingManager : Singleton<BuildingManager>
 
             var newListings = Random.Range(_minNewListings, _maxNewListings);
             for (var i = 0; i < newListings; i++)
+            {
+                if (_listings.Count >= _maxListings)
+                    break;
+                
                 AddListing(GetListing());
+            }
         }
     }
 
@@ -134,6 +144,9 @@ public class BuildingManager : Singleton<BuildingManager>
     private readonly List<BuildingListing> _soldBuildings = new();
     public void Return(BuildingListing listing)
     {
+        var lifetime = Random.Range(_minListingTime, _maxListingTime);
+        listing.BuyCost = 0;
+        listing.Lifetime = lifetime;
         _soldBuildings.Add(listing);
     }
 }

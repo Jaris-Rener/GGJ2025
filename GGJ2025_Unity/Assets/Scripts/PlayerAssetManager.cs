@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerAssetManager : Singleton<PlayerAssetManager>
 {
@@ -16,20 +17,20 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
     public float minimumTaxAmount = 50.0f;
     public List<BuildingListing> Properties = new();
 
-    public static int beachPropertiesBought = 0;
-    public static int suburbPropertiesBought = 0;
-    public static int cityPropertiesBought = 0;
-    public static int totalPropertiesBought = 0;
+    public int beachPropertiesBought = 0;
+    public int suburbPropertiesBought = 0;
+    public int cityPropertiesBought = 0;
+    public int totalPropertiesBought = 0;
 
-    public static int beachPropertiesSold = 0;
-    public static int subrubPropertiesSold = 0;
-    public static int cityPropertiesSold = 0;
-    public static int totalPropertiesSold = 0;
+    public int beachPropertiesSold = 0;
+    public int suburbPropertiesSold = 0;
+    public int cityPropertiesSold = 0;
+    public int totalPropertiesSold = 0;
 
-    public static float totalTaxPaid = 0;
-    public static float totalInterestPaid = 0;
-    public static float totalProfit = 0;
-    public static float totalLosses = 0;
+    public float totalTaxPaid = 0;
+    public float totalInterestPaid = 0;
+    public float totalProfit = 0;
+    public float totalLosses = 0;
 
     public static List<float> moneyChanged = new();
     private float currentMoney = 0.0f;
@@ -38,6 +39,7 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
     private void Start()
     {
         OnMoneyChanged?.Invoke(money);
+        GlobalStepManager.Instance.OnStep += TaxStep;
     }
 
     private void Update()
@@ -89,14 +91,9 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
         return true;
     }
     
-    private void OnEnable()
+    private void OnDestroy()
     {
-        GlobalStepManager.OnStep += TaxStep;
-    }
-
-    private void OnDisable()
-    {
-        GlobalStepManager.OnStep -= TaxStep;
+        GlobalStepManager.Instance.OnStep -= TaxStep;
     }
 
     private void TaxStep()

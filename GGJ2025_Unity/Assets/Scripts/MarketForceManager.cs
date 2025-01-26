@@ -57,15 +57,15 @@ public class MarketForceManager : Singleton<MarketForceManager>
         public int[] NumbersToRemove;
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        GlobalStepManager.OnStep += UpdateMarket;
+        GlobalStepManager.Instance.OnStep += UpdateMarket;
         InitializeDecks();
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        GlobalStepManager.OnStep -= UpdateMarket;
+        GlobalStepManager.Instance.OnStep -= UpdateMarket;
     }
 
     private void InitializeDecks()
