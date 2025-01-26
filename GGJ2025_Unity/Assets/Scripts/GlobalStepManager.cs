@@ -75,6 +75,12 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
         }
     }
 
+    private void Update()
+    {
+        var debugSpeedUp = Input.GetKey(KeyCode.Backslash);
+        Time.timeScale = debugSpeedUp ? 20 : 1;
+    }
+
     private void TriggerBeginStep()
     {
         Debug.Log("Begin Market");
@@ -116,34 +122,8 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
             var loseClip = _LoseGameClips.GetRandom();
             _audioSource.PlayOneShot(loseClip);
         }
-
-        // Delay for 2 seconds (change duration as needed)
-        yield return new WaitForSeconds(0.5f);
-
-        // Activate the GraphHandlerPrefab and create the graph
-        if (GraphHandlerPrefab != null)
-        {
-            GraphHandlerPrefab.gameObject.SetActive(true);
-
-            float moneyMin = float.MaxValue;
-            float moneyMax = float.MinValue;
-
-            for (int i = 0; i < PlayerAssetManager.moneyChanged.Count; i++)
-            {
-                GraphHandlerPrefab.CreatePoint(new Vector2(i, PlayerAssetManager.moneyChanged[i]));
-                moneyMax = Mathf.Max(moneyMax, PlayerAssetManager.moneyChanged[i]);
-                moneyMin = Mathf.Min(moneyMin, PlayerAssetManager.moneyChanged[i]);
-            }
-
-            GraphHandlerPrefab.SetCornerValues(new Vector2(-1f, moneyMin), new Vector2(PlayerAssetManager.moneyChanged.Count + 1, moneyMax));
-            GraphHandlerPrefab.UpdateGraph();
-
-            Debug.Log("GraphHandlerPrefab updated after delay.");
-        }
-        else
-        {
-            Debug.LogWarning("GraphHandlerPrefab is not assigned.");
-        }
+        
+        yield break;
     }
 
     public void SetStepInterval(float interval)

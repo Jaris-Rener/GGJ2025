@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class EndGameUI : MonoBehaviour
 {
+    [SerializeField] private GraphHandler _graphPrefab;
     [SerializeField] private CanvasGroup _canvasGroup;
     
     [SerializeField] private TextMeshProUGUI _title;
@@ -73,5 +74,35 @@ public class EndGameUI : MonoBehaviour
         _grossIncome.text = $"${PlayerAssetManager.Instance.totalProfit:N0}K";
         _totalSpend.text = $"${PlayerAssetManager.Instance.totalLosses:N0}K";
         _totalTaxed.text = $"${PlayerAssetManager.Instance.totalTaxPaid:N0}K";
+
+        SetupGraph();
+    }
+
+    private void SetupGraph()
+    {
+        // Activate the GraphHandlerPrefab and create the graph
+        if (_graphPrefab != null)
+        {
+            _graphPrefab.gameObject.SetActive(true);
+
+            float moneyMin = float.MaxValue;
+            float moneyMax = float.MinValue;
+
+            for (int i = 0; i < PlayerAssetManager.moneyChanged.Count; i++)
+            {
+                _graphPrefab.CreatePoint(new Vector2(i, PlayerAssetManager.moneyChanged[i]));
+                moneyMax = Mathf.Max(moneyMax, PlayerAssetManager.moneyChanged[i]);
+                moneyMin = Mathf.Min(moneyMin, PlayerAssetManager.moneyChanged[i]);
+            }
+
+            _graphPrefab.SetCornerValues(new Vector2(-1f, moneyMin), new Vector2(PlayerAssetManager.moneyChanged.Count + 1, moneyMax));
+            _graphPrefab.UpdateGraph();
+
+            Debug.Log("GraphHandlerPrefab updated after delay.");
+        }
+        else
+        {
+            Debug.LogWarning("GraphHandlerPrefab is not assigned.");
+        }
     }
 }
