@@ -71,50 +71,50 @@ MonoBehaviour:
   updatePeriod: 5
   graphSize: {x: 800, y: 400}
   graphScale: {x: 100, y: 100}
-  backgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 2
-  outlineColor: {r: 0, g: 0.8, b: 1, a: 1}
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
   lineWidth: 8
-  lineColor: {r: 1, g: 0.35, b: 0, a: 1}
+  lineColor: {r: 1, g: 0.021984711, b: 0, a: 1}
   PointSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  pointRadius: 5
-  pointColor: {r: 1, g: 0.35, b: 0, a: 1}
+  pointRadius: 10
+  pointColor: {r: 1, g: 1, b: 1, a: 1}
   pointHoverRadius: 15
   PointHoverSpeed: 5
-  pointHoverColor: {r: 1, g: 0.6, b: 0, a: 1}
+  pointHoverColor: {r: 1, g: 1, b: 1, a: 1}
   pointLockedRadius: 17
   PointLockedSpeed: 5
-  pointLockedColor: {r: 1, g: 0.8, b: 0, a: 1}
-  unfixedPointOutlineWidth: 10
-  unfixedPointOutlineColor: {r: 0, g: 0.8, b: 1, a: 1}
+  pointLockedColor: {r: 1, g: 1, b: 1, a: 1}
+  unfixedPointOutlineWidth: 5
+  unfixedPointOutlineColor: {r: 0.24213827, g: 0.45689753, b: 1, a: 1}
   unfixedPointOutlineHoverWidth: 15
   UnfixedPointOutlineHoverSpeed: 5
-  unfixedPointOutlineHoverColor: {r: 0, g: 0.5, b: 1, a: 1}
+  unfixedPointOutlineHoverColor: {r: 0, g: 0.50196075, b: 1, a: 1}
   fixedPointOutlineWidth: 17
   FixedPointOutlineSpeed: 5
-  fixedPointOutlineColor: {r: 0, g: 0.8, b: 1, a: 1}
+  fixedPointOutlineColor: {r: 0, g: 0.7999997, b: 1, a: 1}
   GridTextFont: {fileID: 11400000, guid: 4832b42787f601140b8c22ccaed54019, type: 2}
   gridSpacing: {x: 2, y: 2}
   xAxisWidth: 3
-  xAxisColor: {r: 0, g: 0.8, b: 1, a: 1}
-  xAxisTextColor: {r: 0, g: 0.8, b: 1, a: 1}
+  xAxisColor: {r: 0, g: 0, b: 0, a: 1}
+  xAxisTextColor: {r: 0, g: 0, b: 0, a: 1}
   xAxisTextSize: 5
-  xAxisTextOffset: 5
+  xAxisTextOffset: 13.88
   yAxisWidth: 3
-  yAxisColor: {r: 0, g: 0.8, b: 1, a: 1}
-  yAxisTextColor: {r: 0, g: 0.8, b: 1, a: 1}
+  yAxisColor: {r: 0, g: 0, b: 0, a: 1}
+  yAxisTextColor: {r: 0, g: 0, b: 0, a: 1}
   yAxisTextSize: 10
-  yAxisTextOffset: 10
+  yAxisTextOffset: 25
   xGridWidth: 2
-  xGridColor: {r: 0, g: 0.8, b: 1, a: 0.6}
+  xGridColor: {r: 0, g: 0, b: 0, a: 0.20784314}
   yGridWidth: 2
-  yGridColor: {r: 0, g: 0.8, b: 1, a: 0.6}
+  yGridColor: {r: 0, g: 0, b: 0, a: 0.20784314}
   zoomSelectionColor: {r: 0, g: 0.8, b: 1, a: 0.2}
   zoomSelectionOutlineWidth: 5
   zoomSelectionOutlineColor: {r: 0, g: 0.8, b: 1, a: 0.6}
   pointSelectionColor: {r: 1, g: 0.35, b: 0, a: 0.2}
   pointSelectionOutlineWidth: 5
   pointSelectionOutlineColor: {r: 1, g: 0.35, b: 0, a: 0.4}
-  ZoomSpeed: 5
+  ZoomSpeed: 20
   SmoothZoomSpeed: 20
   SmoothMoveSpeed: 20
