@@ -195,6 +195,13 @@ public class GraphHandler : MonoBehaviour
         initialLockedPoints = new List<int>();
         recentlyLockedPoints = new List<int>();
         fixedHoveredPoints = new List<int>();
+
+        GS = GetComponent<GraphSettings>();
+        if (GS == null)
+        {
+            Debug.LogError("GraphSettings component is missing from GraphHandler.");
+            return;
+        }
     }
 
     #endregion
@@ -208,7 +215,7 @@ public class GraphHandler : MonoBehaviour
         GS = GetComponent<GraphSettings>();
         PrepareGraph();
         // comment out below if you want to test the visuals of the graph
-        // ExampleFunction();
+        //ExampleFunction();
     }
     private void Update()
     {
@@ -284,14 +291,19 @@ public class GraphHandler : MonoBehaviour
 
         gridParent = CreateParent("GridParent");
         lineParent = CreateParent("LineParent");
-        pointParent = CreateParent("PointParent");
+
+        // Add a null check for pointParent
+        if (pointParent == null)
+        {
+            pointParent = CreateParent("PointParent");
+        }
 
         outlineParent = CreateParent("OutlineParent");
         CreateOutlines();
         outlineParent.transform.SetParent(graph);
 
         fixedPointIndex = -1;
-        //SetCornerValues(Vector2.zero, new Vector2(3f, 3f * GS.GraphSize.y / GS.GraphSize.x));
+
         CreateselectionTypes();
         UpdateGraphInternal(UpdateMethod.All);
     }

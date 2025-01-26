@@ -87,7 +87,6 @@ public class BuildingManager : Singleton<BuildingManager>
     {
         while (!GlobalStepManager.endTriggered)
         {
-            Debug.Log("This working>");
             var delay = Random.Range(_minListingDelay, _maxListingDelay);
             delay *= _speedMultiplier.Evaluate(Time.time - GlobalStepManager.Instance.StartTime);
             yield return new WaitForSeconds(delay);

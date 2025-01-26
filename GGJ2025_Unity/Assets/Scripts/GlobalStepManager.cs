@@ -51,7 +51,6 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
             Debug.LogError("GraphHandler not found in the scene.");
             return;
         }
-        GraphHandlerPrefab.gameObject.SetActive(false);
     }
 
     private IEnumerator StepMarket()
@@ -107,6 +106,7 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
     {
         yield return new WaitForSeconds(startDelayTime);
         TriggerBeginStep();
+        GraphHandlerPrefab.gameObject.SetActive(false);
     }
 
     private IEnumerator DelayedExecution()
@@ -122,7 +122,7 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
             var loseClip = _LoseGameClips.GetRandom();
             _audioSource.PlayOneShot(loseClip);
         }
-        
+
         yield break;
     }
 
