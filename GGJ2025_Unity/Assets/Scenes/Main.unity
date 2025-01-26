@@ -1465,6 +1465,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EndGameScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 618802641211554957, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
+      propertyPath: m_text
+      value: Total Profit
+      objectReference: {fileID: 0}
     - target: {fileID: 819717286591618274, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
       propertyPath: graphSize.x
       value: 800
@@ -1521,6 +1525,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1339147730093340347, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
+      propertyPath: m_text
+      value: Beach Properties Sold
+      objectReference: {fileID: 0}
     - target: {fileID: 1365118625523671752, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1605,6 +1613,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2626161913634141509, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
+      propertyPath: m_text
+      value: Total Taxed
+      objectReference: {fileID: 0}
     - target: {fileID: 2895560099133466563, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1700,6 +1712,10 @@ PrefabInstance:
     - target: {fileID: 3111696785953133931, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3563220020860386045, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
+      propertyPath: m_text
+      value: Suburban Properties Sold
       objectReference: {fileID: 0}
     - target: {fileID: 3916049894502462741, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
       propertyPath: m_Pivot.x
@@ -1805,6 +1821,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4110503372965642190, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
+      propertyPath: m_text
+      value: Total Loses
+      objectReference: {fileID: 0}
     - target: {fileID: 4165461111318007909, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1852,6 +1872,14 @@ PrefabInstance:
     - target: {fileID: 4191209400212121280, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4583582989853460788, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
+      propertyPath: m_text
+      value: Suburban Properties Purchased
+      objectReference: {fileID: 0}
+    - target: {fileID: 4799370776471076275, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
+      propertyPath: m_text
+      value: City Properties Purchased
       objectReference: {fileID: 0}
     - target: {fileID: 4827491154756020672, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2149,6 +2177,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7523842298905381849, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
+      propertyPath: m_text
+      value: Beach Properties Purchased
+      objectReference: {fileID: 0}
     - target: {fileID: 7543475983163679858, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2316,6 +2348,10 @@ PrefabInstance:
     - target: {fileID: 8655998857335549131, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882749788783594000, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
+      propertyPath: m_text
+      value: City Properties Sold
       objectReference: {fileID: 0}
     - target: {fileID: 9038916738037243511, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
       propertyPath: m_Alpha
