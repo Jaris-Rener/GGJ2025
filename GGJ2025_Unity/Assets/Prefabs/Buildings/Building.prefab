@@ -50,6 +50,7 @@ MonoBehaviour:
   mansionOptions:
   - {fileID: 3635089638603174509, guid: 205a37df13e74dd4dae1f4b3055fd783, type: 3}
   - {fileID: 7743164935975965601, guid: 88cbc2355a6a373469e013475a479115, type: 3}
+  - {fileID: 7413116861721867550, guid: a8cfff8a495a04f40a787283fe66d115, type: 3}
   apartmentOptions:
   - {fileID: 3635089638603174509, guid: a129826b7239e6649a12d5f78ecfaa08, type: 3}
   - {fileID: 3466016377094738797, guid: 460035f24efb1f54297f630641a913fd, type: 3}
