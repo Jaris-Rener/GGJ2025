@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: BuildingTypeSpriteLookup_DollarSign
   m_EditorClassIdentifier: 
   _lookup:
-  - Key: 0
-    Value: {fileID: 21300000, guid: 576a0703140fbd442a0d5117f6fe4746, type: 3}
   - Key: 1
+    Value: {fileID: 21300000, guid: 576a0703140fbd442a0d5117f6fe4746, type: 3}
+  - Key: 0
     Value: {fileID: 21300000, guid: 8e89cfd30729d9c4595033365d176f41, type: 3}
   - Key: 2
     Value: {fileID: 21300000, guid: 721c46261c1b3434ca3f9d81bc463333, type: 3}
