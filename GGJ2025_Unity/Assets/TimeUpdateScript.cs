@@ -22,7 +22,7 @@ public class TimeUpdateScript : MonoBehaviour
         if (GlobalStepManager.Instance != null)
         {
             timeRemaining = GlobalStepManager.Instance.stepCount * GlobalStepManager.Instance.stepInterval;
-            timeRemaining += GlobalStepManager.Instance.startDelayTime;
+            timeRemaining += GlobalStepManager.Instance.startDelayTime + GlobalStepManager.Instance.stepInterval + 1f;
         }
         else
         {
