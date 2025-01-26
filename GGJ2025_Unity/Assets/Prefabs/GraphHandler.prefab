@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updatePeriod: 5
-  graphSize: {x: 1700, y: 1050}
+  graphSize: {x: 1600, y: 900}
   graphScale: {x: 100, y: 100}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 2
