@@ -56,6 +56,8 @@ MonoBehaviour:
   spawnPosition: {x: 0, y: 0, z: 0}
   stepInterval: 10
   stepCount: 15
+  startDelayTime: 0.25
+  currentStepCount: 0
 --- !u!82 &1935769469229932256
 AudioSource:
   m_ObjectHideFlags: 0
