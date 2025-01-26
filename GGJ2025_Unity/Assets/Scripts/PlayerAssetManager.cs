@@ -38,6 +38,7 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
     private void Start()
     {
         OnMoneyChanged?.Invoke(money);
+        GlobalStepManager.Instance.OnStep += TaxStep;
     }
 
     private void Update()
@@ -89,12 +90,7 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
         return true;
     }
     
-    private void OnEnable()
-    {
-        GlobalStepManager.Instance.OnStep += TaxStep;
-    }
-
-    private void OnDisable()
+    private void OnDestroy()
     {
         GlobalStepManager.Instance.OnStep -= TaxStep;
     }

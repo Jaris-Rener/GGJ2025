@@ -138,6 +138,8 @@ public class BuildingManager : Singleton<BuildingManager>
     private readonly List<BuildingListing> _soldBuildings = new();
     public void Return(BuildingListing listing)
     {
+        var lifetime = Random.Range(_minListingTime, _maxListingTime);
+        listing.Lifetime = lifetime;
         _soldBuildings.Add(listing);
     }
 }
