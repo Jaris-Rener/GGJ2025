@@ -7,9 +7,9 @@ using UnityEngine;
 public class GlobalStepManager : Singleton<GlobalStepManager>
 {
     // The event that other classes can subscribe to
-    public static event Action OnBeginStep;
-    public static event Action OnStep;
-    public static event Action OnEndStep;
+    public event Action OnBeginStep;
+    public event Action OnStep;
+    public event Action OnEndStep;
     public AudioSource _audioSource;
     public AudioClip _TimerClip;
     [SerializeField] private List<AudioClip> _WinGameClips;

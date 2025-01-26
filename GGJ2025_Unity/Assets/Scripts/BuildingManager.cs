@@ -43,10 +43,14 @@ public class BuildingManager : Singleton<BuildingManager>
 
     private void Start()
     {
-        GlobalStepManager.OnBeginStep += CreateInitialListings;
+        GlobalStepManager.Instance.OnBeginStep += CreateInitialListings;
     }
 
-   
+    private void OnDestroy()
+    {
+        GlobalStepManager.Instance.OnBeginStep -= CreateInitialListings;
+    }
+
     public BuildingListing GetListing()
     {
         if (_listingPool.Count <= 0)

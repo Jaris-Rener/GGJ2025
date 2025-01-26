@@ -59,13 +59,13 @@ public class MarketForceManager : Singleton<MarketForceManager>
 
     private void OnEnable()
     {
-        GlobalStepManager.OnStep += UpdateMarket;
+        GlobalStepManager.Instance.OnStep += UpdateMarket;
         InitializeDecks();
     }
 
     private void OnDisable()
     {
-        GlobalStepManager.OnStep -= UpdateMarket;
+        GlobalStepManager.Instance.OnStep -= UpdateMarket;
     }
 
     private void InitializeDecks()

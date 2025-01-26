@@ -91,12 +91,12 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
     
     private void OnEnable()
     {
-        GlobalStepManager.OnStep += TaxStep;
+        GlobalStepManager.Instance.OnStep += TaxStep;
     }
 
     private void OnDisable()
     {
-        GlobalStepManager.OnStep -= TaxStep;
+        GlobalStepManager.Instance.OnStep -= TaxStep;
     }
 
     private void TaxStep()
