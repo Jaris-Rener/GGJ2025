@@ -28,7 +28,6 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
     public int totalPropertiesSold = 0;
 
     public float totalTaxPaid = 0;
-    public float totalInterestPaid = 0;
     public float totalProfit = 0;
     public float totalLosses = 0;
 
@@ -98,7 +97,9 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
 
     private void TaxStep()
     {
+        float currentMoney = money;
         money = TaxPlayer();
+        totalTaxPaid += money - currentMoney;
         OnMoneyChanged?.Invoke(money);
         Debug.Log(money);
 
@@ -114,13 +115,11 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
         {
             // Decrease positive money by 30%
             taxedAmount = money * (1 - taxRate);
-            totalTaxPaid += taxedAmount;
         }
         else
         {
             // Increase debt (negative money) by 30%
             taxedAmount = money * (1 + taxRate);
-            totalInterestPaid += taxedAmount;
         }
 
         // Ensure taxed amount is at least the minimum tax amount
@@ -129,7 +128,6 @@ public class PlayerAssetManager : Singleton<PlayerAssetManager>
             taxedAmount = money - minimumTaxAmount;
         }
 
-        totalTaxPaid += taxedAmount;
         return taxedAmount;
     }
 }
