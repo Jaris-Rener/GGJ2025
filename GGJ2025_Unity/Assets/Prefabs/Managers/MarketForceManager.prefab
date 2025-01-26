@@ -78,7 +78,7 @@ MonoBehaviour:
       NumbersToAdd: ffffffff0100000002000000
       NumbersToRemove: 
     MaxOut:
-      NumbersToAdd: fffffffffeffffff
+      NumbersToAdd: fffffffffefffffffffffffffeffffff
       NumbersToRemove: 0200000001000000
     BottomOut:
       NumbersToAdd: 0200000001000000
@@ -100,7 +100,7 @@ MonoBehaviour:
       NumbersToAdd: ffffffff0100000002000000
       NumbersToRemove: 
     MaxOut:
-      NumbersToAdd: fffffffffeffffff
+      NumbersToAdd: fffffffffefffffffffffffffeffffff
       NumbersToRemove: 0100000002000000
     BottomOut:
       NumbersToAdd: 0200000001000000
@@ -122,7 +122,7 @@ MonoBehaviour:
       NumbersToAdd: ffffffff0100000002000000
       NumbersToRemove: 
     MaxOut:
-      NumbersToAdd: fffffffffeffffff
+      NumbersToAdd: fffffffffefffffffffffffffeffffff
       NumbersToRemove: 0100000002000000
     BottomOut:
       NumbersToAdd: 0200000001000000

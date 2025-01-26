@@ -1835,6 +1835,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2840416132388910863, guid: d2edc46a26c45b948894aab7da7049c0, type: 3}
+      propertyPath: Location
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6784478577477200355, guid: d2edc46a26c45b948894aab7da7049c0, type: 3}
       propertyPath: m_Name
       value: GRP_LocationInfo (2)
@@ -2539,6 +2543,10 @@ PrefabInstance:
     - target: {fileID: 413415668674247950, guid: d2edc46a26c45b948894aab7da7049c0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2840416132388910863, guid: d2edc46a26c45b948894aab7da7049c0, type: 3}
+      propertyPath: Location
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6784478577477200355, guid: d2edc46a26c45b948894aab7da7049c0, type: 3}
       propertyPath: m_Name
