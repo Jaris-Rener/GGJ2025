@@ -207,7 +207,8 @@ public class GraphHandler : MonoBehaviour
             return;
         GS = GetComponent<GraphSettings>();
         PrepareGraph();
-        //ExampleFunction();
+        // comment out below if you want to test the visuals of the graph
+        // ExampleFunction();
     }
     private void Update()
     {
