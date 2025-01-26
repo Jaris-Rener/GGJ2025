@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class TimeUpdateScript : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class TimeUpdateScript : MonoBehaviour
     private float timeRemaining;
 
     public float timeRemainingFranticAudioTrigger = 30f;
+
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _franticAudio;
 
     bool flipFlop = false;
 
@@ -34,7 +38,7 @@ public class TimeUpdateScript : MonoBehaviour
             if (!flipFlop && timeRemaining < timeRemainingFranticAudioTrigger) 
             {
                 flipFlop = true;
-
+                _audioSource.PlayOneShot(_franticAudio);
             }
 
             timeRemaining -= Time.deltaTime;
