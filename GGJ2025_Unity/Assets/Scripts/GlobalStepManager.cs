@@ -22,15 +22,15 @@ public class GlobalStepManager : Singleton<GlobalStepManager>
 
     // Interval in seconds between each step
     [SerializeField]
-    private float stepInterval = 10.0f;
+    public float stepInterval = 10.0f;
 
     [SerializeField]
-    private int stepCount = 15;
+    public int stepCount = 15;
 
     [SerializeField]
-    private float startDelayTime = 1f;
+    public float startDelayTime = 1f;
 
-    private int currentStepCount = 0;
+    public int currentStepCount = 0;
 
     public static bool gameStarted = false;
     public static bool endTriggered = false;
