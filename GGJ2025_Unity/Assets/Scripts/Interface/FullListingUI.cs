@@ -49,19 +49,19 @@ public class FullListingUI : ListingUI
     private void SellListing()
     {
         PlayerAssetManager.Instance.Sell(Listing);
-        PlayerAssetManager.totalPropertiesSold++;
+        PlayerAssetManager.Instance.totalPropertiesSold++;
 
         // Increment based on location
         switch (Listing.Location)
         {
             case Location.Beach:
-                PlayerAssetManager.beachPropertiesSold++;
+                PlayerAssetManager.Instance.beachPropertiesSold++;
                 break;
             case Location.City:
-                PlayerAssetManager.cityPropertiesSold++;
+                PlayerAssetManager.Instance.cityPropertiesSold++;
                 break;
             case Location.Suburbs:
-                PlayerAssetManager.subrubPropertiesSold++;
+                PlayerAssetManager.Instance.suburbPropertiesSold++;
                 break;
             default:
                 Debug.LogWarning("Unknown location.");
@@ -75,19 +75,19 @@ public class FullListingUI : ListingUI
         if (success)
         {
             BuildingManager.Instance.RemoveListing(Listing);
-            PlayerAssetManager.totalPropertiesBought++;
+            PlayerAssetManager.Instance.totalPropertiesBought++;
 
             // Increment based on location
             switch (Listing.Location)
             {
                 case Location.Beach:
-                    PlayerAssetManager.beachPropertiesBought++;
+                    PlayerAssetManager.Instance.beachPropertiesBought++;
                     break;
                 case Location.City:
-                    PlayerAssetManager.cityPropertiesBought++;
+                    PlayerAssetManager.Instance.cityPropertiesBought++;
                     break;
                 case Location.Suburbs:
-                    PlayerAssetManager.suburbPropertiesBought++;
+                    PlayerAssetManager.Instance.suburbPropertiesBought++;
                     break;
                 default:
                     Debug.LogWarning("Unknown location.");
