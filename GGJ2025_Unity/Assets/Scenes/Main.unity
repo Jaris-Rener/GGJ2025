@@ -1465,6 +1465,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EndGameScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 819717286591618274, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
+      propertyPath: graphSize.x
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 819717286591618274, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
+      propertyPath: graphSize.y
+      value: 450
+      objectReference: {fileID: 0}
     - target: {fileID: 1237361153835571699, guid: 62795b70f43a4e84ba44de4157049eca, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
