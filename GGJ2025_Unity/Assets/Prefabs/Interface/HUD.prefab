@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textRef: {fileID: 1563337556144946325}
-  timeRemainingFranticAudioTrigger: 30
+  timeRemainingFranticAudioTrigger: 20
   _audioSource: {fileID: 3171523353712617837}
   _franticAudio: {fileID: 8300000, guid: 39878e26b5b7bc3429f161be24a5c923, type: 3}
 --- !u!82 &3171523353712617837

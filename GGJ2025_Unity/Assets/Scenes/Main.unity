@@ -1473,6 +1473,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 770245825}
     m_Modifications:
+    - target: {fileID: -1288382981834044251, guid: 1517c2a7d58ee854a9683c5de7cbc3be, type: 3}
+      propertyPath: stepCount
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 2238485520321346945, guid: 1517c2a7d58ee854a9683c5de7cbc3be, type: 3}
       propertyPath: m_Name
       value: GlobalStepManager
