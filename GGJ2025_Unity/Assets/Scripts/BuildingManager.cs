@@ -145,6 +145,7 @@ public class BuildingManager : Singleton<BuildingManager>
     public void Return(BuildingListing listing)
     {
         var lifetime = Random.Range(_minListingTime, _maxListingTime);
+        listing.BuyCost = 0;
         listing.Lifetime = lifetime;
         _soldBuildings.Add(listing);
     }
