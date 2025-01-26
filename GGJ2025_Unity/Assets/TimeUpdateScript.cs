@@ -7,7 +7,7 @@ public class TimeUpdateScript : MonoBehaviour
 
     private float timeRemaining;
 
-    public float timeRemainingFranticAudioTrigger;
+    public float timeRemainingFranticAudioTrigger = 30f;
 
     bool flipFlop = false;
 
@@ -18,7 +18,7 @@ public class TimeUpdateScript : MonoBehaviour
         if (GlobalStepManager.Instance != null)
         {
             timeRemaining = GlobalStepManager.Instance.stepCount * GlobalStepManager.Instance.stepInterval;
-            timeRemaining = +GlobalStepManager.Instance.startDelayTime;
+            timeRemaining += GlobalStepManager.Instance.startDelayTime;
         }
         else
         {
@@ -36,7 +36,7 @@ public class TimeUpdateScript : MonoBehaviour
                 flipFlop = true;
 
             }
-            // Decrement the timer
+
             timeRemaining -= Time.deltaTime;
 
             // Prevent it from going negative
@@ -49,7 +49,6 @@ public class TimeUpdateScript : MonoBehaviour
             int minutes = Mathf.FloorToInt(timeRemaining / 60f);
             int seconds = Mathf.FloorToInt(timeRemaining % 60f);
 
-            // Update the text if the reference exists
             if (textRef != null)
             {
                 TextMeshProUGUI textMeshProRef = textRef.GetComponent<TextMeshProUGUI>();
