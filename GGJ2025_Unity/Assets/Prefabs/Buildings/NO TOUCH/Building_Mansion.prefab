@@ -138,18 +138,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3242876274835343082, guid: dcae07402ccc8774a8100763344ec679, type: 3}
-      propertyPath: houseOptions.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3242876274835343082, guid: dcae07402ccc8774a8100763344ec679, type: 3}
-      propertyPath: apartmentOptions.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3242876274835343082, guid: dcae07402ccc8774a8100763344ec679, type: 3}
-      propertyPath: 'mansionOptions.Array.data[0]'
-      value: 
-      objectReference: {fileID: 3635089638603174509, guid: 205a37df13e74dd4dae1f4b3055fd783, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
