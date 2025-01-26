@@ -43,10 +43,10 @@ public class BuildingManager : Singleton<BuildingManager>
 
     private void Start()
     {
-        CreateInitialListings();
-        StartCoroutine(GenerateListings());
+        GlobalStepManager.OnBeginStep += CreateInitialListings;
     }
 
+   
     public BuildingListing GetListing()
     {
         if (_listingPool.Count <= 0)
@@ -82,6 +82,7 @@ public class BuildingManager : Singleton<BuildingManager>
     {
         while (!GlobalStepManager.endTriggered)
         {
+            Debug.Log("This working>");
             var delay = Random.Range(_minListingDelay, _maxListingDelay);
             delay *= _speedMultiplier.Evaluate(Time.time - GlobalStepManager.Instance.StartTime);
             yield return new WaitForSeconds(delay);
@@ -98,6 +99,7 @@ public class BuildingManager : Singleton<BuildingManager>
         {
             AddListing(GetListing());
         }
+        StartCoroutine(GenerateListings());
     }
 
     public void AddListing(BuildingListing listing)
@@ -119,7 +121,7 @@ public class BuildingManager : Singleton<BuildingManager>
             Return(listing);
 
         // Stop generating listings when end is triggered
-        if (GlobalStepManager.endTriggered) return;
+        if (GlobalStepManager.endTriggered || !GlobalStepManager.gameStarted) return;
         if (_listings.Count < _minListings)
         {
             for (int i = 0; i < _minListings - _listings.Count; i++)
